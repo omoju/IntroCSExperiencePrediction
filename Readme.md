@@ -14,7 +14,7 @@ This project requires Python 2.7 and the following Python libraries installed:
 
 The code is provided in the notebook `genderedCSExperience.ipynb`.
 
-To open it, go to the top-level project directory `DissertationDataAnalysis/` and start the notebook server:
+To open it, go to the top-level project directory `genderCSExperience/` and start the notebook server:
 
 ```jupyter notebook```
 
