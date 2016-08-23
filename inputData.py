@@ -3,6 +3,7 @@ import pandas as pd
 
 dataPath = '/Users/omojumiller/Dropbox/Research/DissertationSubmission/'
 
+
 cs10Spring_df = pd.read_csv(dataPath+'Data/CS10_Pre_Responses_Spring2015.csv') 
 cs10Spring_pdf = pd.read_csv(dataPath+'Data/CS10_Post_Responses_Spring2015.csv')
 cs61a = pd.read_csv(dataPath+'Data/CS61A_Responses_Fall2014.csv')
@@ -60,7 +61,20 @@ def process( cs61a, cs10Spring_df, cs10Spring_pdf  ):
     return student_data
 
 def preprocess():
-    return process( cs61a, cs10Spring_df, cs10Spring_pdf  )
+    return process( cs61a, cs10Spring_df, cs10Spring_pdf )
+
+
+def describeData(itemDimensions):
+    dd = pd.read_csv(dataPath+'Data/Data_Describe.csv')
+    dd.columns = ['dataDecription', 'dataKeys']
+    dataDescription = {}
+
+    for i, row in dd.iterrows():
+        dataDescription[dd.dataKeys[i]] = dd.dataDecription[i]
+    
+    for item in itemDimensions:
+        print"{:15}{:20}".format(item, dataDescription[item])        
+    
     
 
 
