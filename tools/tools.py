@@ -99,17 +99,17 @@ def pca_results(good_data, pca):
 	variance_ratios.index = dimensions
 
 	# Create a bar plot visualization
-	fig, ax = plt.subplots(figsize = (14,8))
+	#fig, ax = plt.subplots(figsize = (14,8))
 
 	# Plot the feature weights as a function of the components
-	components.plot(ax = ax, kind = 'bar');
-	ax.set_ylabel("Feature Weights")
-	ax.set_xticklabels(dimensions, rotation=0)
+	#components.plot(ax = ax, kind = 'bar');
+	#ax.set_ylabel("Feature Weights")
+	#ax.set_xticklabels(dimensions, rotation=0)
 
 
 	# Display the explained variance ratios
-	for i, ev in enumerate(pca.explained_variance_ratio_):
-		ax.text(i-0.40, ax.get_ylim()[1] + 0.05, "Explained Variance\n          %.4f"%(ev))
+	#for i, ev in enumerate(pca.explained_variance_ratio_):
+		#ax.text(i-0.40, ax.get_ylim()[1] + 0.05, "Explained Variance\n          %.4f"%(ev))
 
 	# Return a concatenated DataFrame
 	return pd.concat([variance_ratios, components], axis = 1)
