@@ -54,9 +54,11 @@ def process( cs61a, cs10Spring_df, cs10Spring_pdf  ):
     cs10Spring_pdf = cs10Spring_pdf[cs10Spring_pdf.consent == 'I agree']
 
     ## Combine all the different data samples representing the two collections from CS10 and the one collection from 61a
+    
 
     frames = [cs10Spring_df, cs10Spring_pdf, cs61a]
     student_data = pd.concat(frames, keys=['pre', 'post','61a'])
+    
 
     return student_data
 
