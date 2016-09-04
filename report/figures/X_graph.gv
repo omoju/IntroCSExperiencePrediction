@@ -1,5 +1,5 @@
 digraph {
-	graph [rankdir=UT]
+	graph [rankdir=LR]
 		0 [label="atcsgender_2<0.125" shape=circle]
 			0 -> 1 [label="yes, missing" color="#0000FF"]
 			0 -> 2 [label=no color="#FF0000"]
