@@ -9,7 +9,7 @@ In answering the central research questions concerning this study, an in-depth e
 
 In the course of investigating the questions, the following data science projects were carried out:
 - [investigatingWhyURMsChooseCS](https://github.com/omoju/investigatingWhyURMsChooseCS)
-- [AnalyzingInterviewText](https://github.com/omoju/AnalyzingInterviewText)
+- [analyzingInterviewText](https://github.com/omoju/AnalyzingInterviewText)
 - [hiphopathy](https://github.com/omoju/hiphopathy)
 
 In addition to the previous work done, this project adds a predictive model for understanding the dynamics of gender in intro CS at Berkeley for the years 2014 through 2015.
