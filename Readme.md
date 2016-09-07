@@ -1,30 +1,18 @@
 # Model the Dynamics of Gender in Intro CS at UC Berkeley. 
+### A Supervised Learning Project.   
 
-A Supervised Learning Project
+This work builds on previous research done in fulfillment of a Computer Science Education Ph.D., HipHopathy, A Socio-Curricular Study of Introductory Computer Science. 
 
-## Install
+A mixed-methods formative research was conducted that sought to answer the question, “What are the socio-curricular factors that lead historically underrepresented students to choose CS?”
 
-This project requires Python 2.7 and the following Python libraries installed:
+In answering the central research questions concerning this study, an in-depth examination of the UC Berkeley course titled *The Beauty and Joy of Computing* was presented benchmarked against the UC Berkeley course titled *The Structure and Interpretation of Computer Programs.* 
 
-- [NumPy](http://www.numpy.org/)
-- [Pandas](http://pandas.pydata.org/)
-- [Scikit-learn](http://scikit-learn.org/stable/)
-- [XGBoost](https://github.com/dmlc/xgboost)
+In the course of investigating the questions, the following data science projects were carried out:
+-[investigatingWhyURMsChooseCS](https://github.com/omoju/investigatingWhyURMsChooseCS)
+-[AnalyzingInterviewText](https://github.com/omoju/AnalyzingInterviewText)
+-[hiphopathy](https://github.com/omoju/hiphopathy)
 
-## Code
-
-The code is provided in the notebook `genderedCSExperience.ipynb`.
-
-To open it, go to the top-level project directory `genderCSExperience/` and start the notebook server:
-
-```jupyter notebook```
-
-This should open a web browser to the server's dashboard (typically `http://127.0.0.1:8888`). Click on the appropriate notebook (`.ipynb`) to open it, and follow the instructions.
-
-## Run
-
-To run a code cell in the notebook, hit `Shift+Enter`. Any output will be displayed below the corresponding cell.
-
+In addition to the previous work done, this project adds a predictive model for understanding the dynamics of gender in intro CS at Berkeley for the years 2014 through 2015.
 
 ## Data
 
