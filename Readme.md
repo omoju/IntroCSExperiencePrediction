@@ -8,9 +8,9 @@ A mixed-methods formative research was conducted that sought to answer the quest
 In answering the central research questions concerning this study, an in-depth examination of the UC Berkeley course titled *The Beauty and Joy of Computing* was presented benchmarked against the UC Berkeley course titled *The Structure and Interpretation of Computer Programs.* 
 
 In the course of investigating the questions, the following data science projects were carried out:
--[investigatingWhyURMsChooseCS](https://github.com/omoju/investigatingWhyURMsChooseCS)
--[AnalyzingInterviewText](https://github.com/omoju/AnalyzingInterviewText)
--[hiphopathy](https://github.com/omoju/hiphopathy)
+- [investigatingWhyURMsChooseCS](https://github.com/omoju/investigatingWhyURMsChooseCS)
+- [AnalyzingInterviewText](https://github.com/omoju/AnalyzingInterviewText)
+- [hiphopathy](https://github.com/omoju/hiphopathy)
 
 In addition to the previous work done, this project adds a predictive model for understanding the dynamics of gender in intro CS at Berkeley for the years 2014 through 2015.
 
