@@ -40,8 +40,11 @@ dataDescription = {}
 for i, row in dd.iterrows():
     dataDescription[dd.dataKeys[i]] = dd.dataDecription[i]
 
+def dataLookUp(item):
+    print dataDescription[item]
 
-def DESCR():
+def dataDescr():
+
     print "UC Berkeley Intro CS Student dataset"
 
     print "\nNotes"
@@ -51,7 +54,7 @@ def DESCR():
     print "\nNumber of Instances:{}".format(882)
 
     print "\nAttribute Information (in order):"
-    
+
     print "\nSelf reported attitudes about CS"
     print "- atcs_1 I like to use computer science to solve problems."
     print "- atcs_2 I can learn to understand computing concepts."
