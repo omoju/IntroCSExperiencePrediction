@@ -162,18 +162,13 @@ def load_model():
     return clf
 
 def evaluate_chi(y, item):
-    
-     try:
-        #contigency table of observed counts
-        ct1 = pd.crosstab(y, item )
 
-        #column percentages
-        col_sum = ct1.sum(axis=0)
-        col_percentage = ct1/col_sum 
+    #contigency table of observed counts
+    ct1 = pd.crosstab(y, item )
 
-        chi_squared_score, p_value, dof, expected = stats.chi2_contingency(ct1)
-        
-    except TypeError:
-        pass
+    #column percentages
+    col_sum = ct1.sum(axis=0)
+    col_percentage = ct1/col_sum 
+    chi_squared_score, p_value, dof, expected = stats.chi2_contingency(ct1)
     
     return chi_squared_score, p_value, dof, expected
