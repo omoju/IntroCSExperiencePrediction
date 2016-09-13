@@ -171,5 +171,4 @@ def evaluate_chi(y, item):
     col_percentage = ct1/col_sum 
 
     chi_squared_score, p_value, c, d = stats.chi2_contingency(ct1)
-    print 'chi squared score: {:.2f} value: {:.12f}'.format(chi_squared_score, p_value)
     return chi_squared_score, p_value
