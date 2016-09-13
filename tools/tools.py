@@ -1,6 +1,8 @@
 import numpy as np
 import pandas as pd
 import pickle 
+import scipy.stats as stats
+
 
 dataPath = '/Users/omojumiller/Dropbox/Research/DissertationSubmission/'
 
@@ -158,3 +160,16 @@ def load_model():
     except:
         print "Could not load model"
     return clf
+
+def evaluate_chi(y, item):
+    
+    #contigency table of observed counts
+    ct1 = pd.crosstab(y, item )
+
+    #column percentages
+    col_sum = ct1.sum(axis=0)
+    col_percentage = ct1/col_sum 
+
+    chi_squared_score, p_value, c, d = stats.chi2_contingency(ct1)
+    print 'chi squared score: {:.2f} value: {:.12f}'.format(chi_squared_score, p_value)
+    return chi_squared_score, p_value
