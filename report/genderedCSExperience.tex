@@ -126,11 +126,18 @@ As part of my doctoral study, I decided to study the socio-curricular factors th
 
 With this project, the problem I am interested in investigating is the gendered experience of these the two CS classes in my study. Using machine learning algorithms, I want to predict and identify the most salient variables that govern the experience of men versus women in introductory CS at an elite research university like Berkeley.
 
+To predict gender in intro CS at Berkeley we suggest the following strategy:
+\begin{enumerate}% 
+\item Explore the dataset to ensure its integrity and understand the context.
+\item Identify features that may be used. If possible, engineer features that might provide greater discrimination.
+\item With the understanding that this a ``classification'' task, explore a couple of classifiers that might be well suited for the problem at hand.
+\item Once a classifier has been selected, tune it for optimality.
+\end{enumerate}
 
 \section*{Metrics}
 
 
-Predicting gender in intro CS is a supervised learning problem. To determine the performance of the model, I have selected ``accuracy" as the metric of most interest. In addition to that, we will take a look at the confusion matrix to give us more insight into how good our classifiers are at discriminating the data based on gender. 
+Predicting gender in intro CS is a supervised learning problem. To determine the performance of the model, I have selected ``accuracy" as the metric of most interest. In addition to that, we will take a look at the confusion matrix for the output of each model to give us more insight into how good our classifiers are at discriminating the data based on gender. 
 
 %----------------------------------------------------------------------------------------
 %  CHAPTER 
@@ -138,17 +145,32 @@ Predicting gender in intro CS is a supervised learning problem. To determine the
 
 \chapter*{Analysis}
 
-(approximately 2 - 4 pages)
-\section*{Data Exploration}
+This project uses a dataset which I created as part of my doctoral research. The dataset consists of survey responses. The survey instruments were developed to measure participants' self-reported efficacy along several dimensions. 
 
-In this section, you will be expected to analyze the data you are using for the problem. This data can either be in the form of a dataset (or datasets), input data (or input files), or even an environment. The type of data should be thoroughly described and, if possible, have basic statistics and information presented (such as discussion of input features or defining characteristics about the input or environment). Any abnormalities or interesting qualities about the data that may need to be addressed have been identified (such as features that need to be transformed or the possibility of outliers). Questions to ask yourself when writing this section:
+\begin{enumerate}% 
+\item Self-reported attitudes about CS
+\item Gendered belief about CS ability
+\item Career driven beliefs about CS
+\item Self-reported attitudes about computational thinking
+\item Self-reported attitudes about CS class belonging
+\item Self-reported beliefs about collegiality
+\item Prior collegiate CS exposure
+\item CS mentors and role models
+\end{enumerate}
+Majority of the questionnaire uses a 5-point Likert scale (where 1 = Not Really, 3 = Neutral and 5 = Absolutely). The dataset consists of 882 instances with no missing data.
 
-\begin{itemize}% 
-\item If a dataset is present for this problem, have you thoroughly discussed certain features about the dataset? Has a data sample been provided to the reader?
-\item If a dataset is present for this problem, are statistics about the dataset calculated and reported? Have any relevant results from this calculation been discussed?
-\item If a dataset is not present for this problem, has discussion been made about the input space or input data for your problem?
-\item Are there any abnormalities or characteristics about the input space or dataset that need to be addressed? (categorical variables, missing values, outliers, etc.)
-\end{itemize}
+
+An interesting aspect of this dataset is that the class labels for our classification are slightly unbalanced at a ratio of around 1:1.2 for male students as can be seen in figure \ref{targetClass}. 
+
+\begin{figure}[!hbtp]
+\centering
+    \subfloat[]{%
+    \includegraphics[width=1\textwidth]{figures/targetClass}
+    \label{targetClass}}
+    
+    \caption{\textbf{Gender plot. }\textit{The histogram shows a slightly unbalanced target dataset with 494 values of \{0: male\} and 388 values of \{1: female\}.}}
+\end{figure}
+
 
 \section*{Exploratory Visualization}
 
@@ -159,29 +181,14 @@ In this section, you will need to provide some form of visualization that summar
 \item If a plot is provided, are the axes, title, and datum clearly defined?
 \end{itemize}
 
-\section*{Algorithms and Techniques}
+\section*{Data Exploration}
 
-In this section, you will need to discuss the algorithms and techniques you intend to use for solving the problem. You should justify the use of each one based on the characteristics of the problem and the problem domain. Questions to ask yourself when writing this section:
-\begin{itemize}% 
-\item Are the algorithms you will use, including any default variables/parameters in the project clearly defined?
-\item Are the techniques to be used thoroughly discussed and justified?
-\item Is it made clear how the input data or datasets will be handled by the algorithms and techniques chosen?
-\end{itemize}
-
-\section*{Benchmark}
-
-In this section, you will need to provide a clearly defined benchmark result or threshold for comparing across performances obtained by your solution. The reasoning behind the benchmark (in the case where it is not an established result) should be discussed. Questions to ask yourself when writing this section:
-\begin{itemize}% 
-\item Has some result or value been provided that acts as a benchmark for measuring performance?
-\item Is it clear how this result or value was obtained (whether by data or by hypothesis)?
-\end{itemize}
 
 %----------------------------------------------------------------------------------------
 %  CHAPTER 
 %----------------------------------------------------------------------------------------
 \chapter*{Methodology}
 
-(approximately 3 - 5 pages)
 
 \section*{Data Preprocessing}
 In this section, all of your preprocessing steps will need to be clearly documented, if any were necessary. From the previous section, any of the abnormalities or characteristics that you identified about the dataset will be addressed and corrected here. Questions to ask yourself when writing this section:

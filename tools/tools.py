@@ -61,7 +61,7 @@ def dataDescr():
 
     print "\nNumber of Instances:{}".format(882)
 
-    print "\nAttribute Information (in order):"
+    print "\nAttribute Information:"
 
     print "\nSelf reported attitudes about CS"
     print "- atcs_1 I like to use computer science to solve problems."
