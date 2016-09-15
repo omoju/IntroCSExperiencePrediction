@@ -172,14 +172,24 @@ An interesting aspect of this dataset is that the class labels for our classific
 \end{figure}
 
 
+
 \section*{Algorithms and Techniques}
 
-In this section, you will need to discuss the algorithms and techniques you intend to use for solving the problem. You should justify the use of each one based on the characteristics of the problem and the problem domain. Questions to ask yourself when writing this section:
-\begin{itemize}% 
-\item Are the algorithms you will use, including any default variables/parameters in the project clearly defined?
-\item Are the techniques to be used thoroughly discussed and justified?
-\item Is it made clear how the input data or datasets will be handled by the algorithms and techniques chosen?
-\end{itemize}
+For the problem of predicting gender in intro CS I experimented with four different classifiers, a decision tree classifier, two ensemble methods and a support vector machine:
+
+\begin{enumerate}% 
+\item A RandomForestClassifier\\
+I selected this learner because it is considered one of the best off-the-shelf learning algorithm, and requires almost no tuning. 
+\item An eXtreme Gradient Boosted (XGBoost) Trees Classifier\\
+XGBoost is an advanced implementation of gradient boosting algorithm. From reading literature on machine learning in practice, the XGBoost classifier has differentiated itself as a classifier that has successfully demonstrated its performance in a wide range of problems from particle physics, to ad click-through rate prediction and so on. For example, ``among the 29 challenge winning solutions published at Kaggle's blog during 2015, 17 solutions used XGBoost.''
+
+\item Support Vector Machine (SVMs)\\
+I selected the SVMs because they are very robust classifiers and \textit{more importantly}, they have a method of \textit{biasing} the soft-margin constant, $C$, to correct for class imbalances. 
+              
+\item Decision Tree Classifier\\
+The \textit{major} reason why the decision tree classifier was selected was its interpretability. For this problem domain, it is not just satisfactory to discriminate between male and female students, what learning researchers ultimately want is to gain \textit{insights} into what the salient factors around the experience of intro CS are so they can correct for negative outcomes.
+
+\end{enumerate}
 
 \section*{Benchmark}
 
