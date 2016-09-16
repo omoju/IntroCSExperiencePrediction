@@ -14,6 +14,11 @@ In the course of investigating the questions, the following data science project
 
 In addition to the previous work done, this project adds a predictive model for understanding the dynamics of gender in intro CS at Berkeley for the years 2014 through 2015.
 
+
+## Analysis
+An analysis of this project can be found here [report/genderedCSExperience.pdf.pdf](report/genderedCSExperience.pdf.pdf)
+
+
 ## Data
 
 The dataset that is used in this project is unfortunately not available for mass consumption, as it contains sensitive, *personally identifiable* student data.
