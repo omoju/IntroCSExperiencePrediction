@@ -16,7 +16,7 @@ In addition to the previous work done, this project adds a predictive model for 
 
 
 ## Analysis
-An analysis of this project can be found here [report/genderedCSExperience.pdf](report/genderedCSExperience.pdf.pdf)
+An analysis of this project can be found here [report/genderedCSExperience.pdf](report/genderedCSExperience.pdf)
 
 
 ## Data
