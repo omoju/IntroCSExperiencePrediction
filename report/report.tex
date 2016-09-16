@@ -105,15 +105,44 @@ This is novel research, as a result, there are no benchmarks we can compare the 
 To prepare our data for classification, we need to devise a scheme to transform all features into numeric data. This dataset as several non-numeric columns that need converting. Many of them are simply \texttt{yes} and \texttt{no}, e.g. \texttt{prcs\_2}. We can reasonably convert these into `1'/`0' (binary) values. For the columns whose values are `Nan', we will convert these to `0'. We removed the spaces from some column names with the understanding that the tree plotting algorithm fof Xgboost will fail if column names have spaces. We scaled the features using a minimax scaler to get better output for our SVM.
 
 \section*{Frequency Distribution}
-We created a frequency distribution for some dimensions in our data to see if there are features that have extremely low variability in their distribution. As we 
+We created a frequency distribution for some dimensions in our data to see if there are features that have extremely low variability in their distribution. From figures \ref{atct_dimension}, \ref{atcs_dimension}, and \ref{blg_dimension}, we know that these variables are broadly distributed.
 
 \begin{figure}[!hbtp]
 \centering
     \subfloat[]{%
     \includegraphics[width=0.8\textwidth]{figures/atcs_dimension}
-    \label{targetClass}}
+    \label{atcs_dimension}}
     
-    \caption{\textbf{Frequency distribution for dimension atcs: Self-reported attitudes about CS.}}
+    \caption{\textbf{Frequency distribution for dimension atcs. }\textit{Self-reported attitudes about CS.}}
+\end{figure}
+
+\begin{figure}[!hbtp]
+\centering
+    \subfloat[]{%
+    \includegraphics[width=0.8\textwidth]{figures/atct_dimension}
+    \label{atct_dimension}}
+    
+    \caption{\textbf{Frequency distribution for dimension atct. }\textit{Self-reported attitudes about computational thinking.}}
+\end{figure}
+
+\begin{figure}[!hbtp]
+\centering
+    \subfloat[]{%
+    \includegraphics[width=0.8\textwidth]{figures/blg_dimension}
+    \label{blg_dimension}}
+    
+    \caption{\textbf{Frequency distribution for dimension blg. }\textit{Self-reported attitudes about CS class belonging.}}
+\end{figure}
+
+From \ref{atcsgender_dimension}, we can see that the distribution for the dimension \texttt{atcsgender} is extremely skewed.
+
+\begin{figure}[!hbtp]
+\centering
+    \subfloat[]{%
+    \includegraphics[width=0.8\textwidth]{figures/atcsgender_dimension}
+    \label{atcsgender_dimension}}
+    
+    \caption{\textbf{Frequency distribution for dimension atcsgender. }\textit{Gendered belief about CS ability.}}
 \end{figure}
 
 \begin{itemize}% 
