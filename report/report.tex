@@ -54,7 +54,7 @@ This project uses a dataset which I created as part of my doctoral research. The
 
 
 
-Majority of the questionnaire uses a 5-point Likert scale (where 1 = Not Really, 3 = Neutral and 5 = Absolutely). A code book was created to facilitate ease of analysis and interpretability of results. Using the function \texttt{dataDescr()} gives an introduction to the dataset along with codes and the questions which those code represent. For individual look up of codes, the function \texttt{dataLookUp('atct\_8')} can be used.
+Majority of the questionnaire uses a 5-point Likert scale (where 1 = Disagree, 3 = Neutral and 5 = Agree). A code book was created to facilitate ease of analysis and interpretability of results. Using the function \texttt{dataDescr()} gives an introduction to the dataset along with codes and the questions which those code represent. For individual look up of codes, the function \texttt{dataLookUp('atct\_8')} can be used.
 
 The dataset consists of 882 instances with no missing data. Further, there are 494 males and 388 female samples in the dataset.
 
@@ -102,54 +102,51 @@ This is novel research, as a result, there are no benchmarks we can compare the 
 
 \section*{Data Preprocessing}
 
-To prepare our data for classification, we need to devise a scheme to transform all features into numeric data. This dataset as several non-numeric columns that need converting. Many of them are simply \texttt{yes} and \texttt{no}, e.g. \texttt{prcs\_2}. We can reasonably convert these into `1'/`0' (binary) values. For the columns whose values are `Nan', we will convert these to `0'. We removed the spaces from some column names with the understanding that the tree plotting algorithm fof Xgboost will fail if column names have spaces. We scaled the features using a minimax scaler to get better output for our SVM.
+To prepare our data for classification, we need to devise a scheme to transform all features into numeric data. This dataset as several non-numeric columns that need converting. Many of them are simply \texttt{yes} and \texttt{no}, e.g. \texttt{prcs\_2}. We can reasonably convert these into `1'/`0' (binary) values. For the columns whose values are `Nan', we will convert these to `0'. We removed the spaces from some column names with the understanding that the tree plotting algorithm for Xgboost will fail if column names have spaces. 
+
+We scaled the features using a minimax scaler to get better output for our SVM. This yielded the following values:
+\begin {itemize}
+\item Disagree = 0.0
+\item Somewhat disagree = 0.2
+\item Neutral = 0.6
+\item Somewhat agree = 0.8
+\item Agree = 1.0
+\end{itemize} 
+
+
 
 \section*{Frequency Distribution}
 We created a frequency distribution for some dimensions in our data to see if there are features that have extremely low variability in their distribution. From figures \ref{atct_dimension}, \ref{atcs_dimension}, and \ref{blg_dimension}, we know that these variables are broadly distributed.
 
 \begin{figure}[!hbtp]
 \centering
-    \subfloat[]{%
     \includegraphics[width=0.8\textwidth]{figures/atcs_dimension}
-    \label{atcs_dimension}}
-    
-    \caption{\textbf{Frequency distribution for dimension atcs. }\textit{Self-reported attitudes about CS.}}
+    \caption{\textbf{Frequency distribution for dimension atcs. }\textit{Self-reported attitudes about CS.}}\label{atcs_dimension}
 \end{figure}
 
 \begin{figure}[!hbtp]
 \centering
-    \subfloat[]{%
+
     \includegraphics[width=0.8\textwidth]{figures/atct_dimension}
-    \label{atct_dimension}}
-    
-    \caption{\textbf{Frequency distribution for dimension atct. }\textit{Self-reported attitudes about computational thinking.}}
+    \caption{\textbf{Frequency distribution for dimension atct. }\textit{Self-reported attitudes about computational thinking.}}\label{atct_dimension}
 \end{figure}
 
 \begin{figure}[!hbtp]
 \centering
-    \subfloat[]{%
     \includegraphics[width=0.8\textwidth]{figures/blg_dimension}
-    \label{blg_dimension}}
-    
-    \caption{\textbf{Frequency distribution for dimension blg. }\textit{Self-reported attitudes about CS class belonging.}}
+    \caption{\textbf{Frequency distribution for dimension blg. }\textit{Self-reported attitudes about CS class belonging.}}\label{blg_dimension}
 \end{figure}
 
-From \ref{atcsgender_dimension}, we can see that the distribution for the dimension \texttt{atcsgender} is extremely skewed.
+From \ref{atcsgender_dimension}, we can see that the distribution for the dimension \texttt{atcsgender} is extremely skewed to the right, further we notice that \texttt{atcsgender\_2} is bimodal. 
+
+In doing these frequency distributions we are trying to gain an understanding of the variables and determine if we need to reject some of them, or collapse other.
+
 
 \begin{figure}[!hbtp]
 \centering
-    \subfloat[]{%
     \includegraphics[width=0.8\textwidth]{figures/atcsgender_dimension}
-    \label{atcsgender_dimension}}
-    
-    \caption{\textbf{Frequency distribution for dimension atcsgender. }\textit{Gendered belief about CS ability.}}
+    \caption{\textbf{Frequency distribution for dimension atcsgender. }\textit{Gendered belief about CS ability.}}\label{atcsgender_dimension}
 \end{figure}
-
-\begin{itemize}% 
-\item If the algorithms chosen require preprocessing steps like feature selection or feature transformations, have they been properly documented?
-\item Based on the Data Exploration section, if there were abnormalities or characteristics that needed to be addressed, have they been properly corrected?
-\item If no preprocessing is needed, has it been made clear why?
-\end{itemize}
 
 \section*{Implementation}
 In this section, the process for which metrics, algorithms, and techniques that you implemented for the given data will need to be clearly documented. It should be abundantly clear how the implementation was carried out, and discussion should be made regarding any complications that occurred during this process. Questions to ask yourself when writing this section:
