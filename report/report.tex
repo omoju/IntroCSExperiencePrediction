@@ -54,7 +54,7 @@ This project uses a dataset which I created as part of my doctoral research. The
 
 
 
-Majority of the questionnaire uses a 5-point Likert scale (where 1 = Not Really, 3 = Neutral and 5 = Absolutely). A code book was created to facilitate ease of analysis and interpretability of results. Using the function \texttt{dataDescr()} gives an introduction to the dataset along with codes and the questions which those code represent. 
+Majority of the questionnaire uses a 5-point Likert scale (where 1 = Not Really, 3 = Neutral and 5 = Absolutely). A code book was created to facilitate ease of analysis and interpretability of results. Using the function \texttt{dataDescr()} gives an introduction to the dataset along with codes and the questions which those code represent. For individual look up of codes, the function \texttt{dataLookUp('atct\_8')} can be used.
 
 The dataset consists of 882 instances with no missing data. Further, there are 494 males and 388 female samples in the dataset.
 
@@ -102,9 +102,20 @@ This is novel research, as a result, there are no benchmarks we can compare the 
 
 \section*{Data Preprocessing}
 
-\subsection*{Preprocess feature columns}
+To prepare our data for classification, we need to devise a scheme to transform all features into numeric data. This dataset as several non-numeric columns that need converting. Many of them are simply \texttt{yes} and \texttt{no}, e.g. \texttt{prcs\_2}. We can reasonably convert these into `1'/`0' (binary) values. For the columns whose values are `Nan', we will convert these to `0'. We removed the spaces from some column names with the understanding that the tree plotting algorithm fof Xgboost will fail if column names have spaces. We scaled the features using a minimax scaler to get better output for our SVM.
 
-To prepare our data for classification, we need to devise a scheme to transform all features into numeric data. This dataset as several non-numeric columns that need converting. Many of them are simply \texttt{yes} and \texttt{no}, e.g. \texttt{prcs\_2}. We can reasonably convert these into `1'/`0' (binary) values. For the columns whose values are `Nan', we will convert these to `0'.
+\section*{Frequency Distribution}
+We created a frequency distribution for some dimensions in our data to see if there are features that have extremely low variability in their distribution. As we 
+
+\begin{figure}[!hbtp]
+\centering
+    \subfloat[]{%
+    \includegraphics[width=0.8\textwidth]{figures/atcs_dimension}
+    \label{targetClass}}
+    
+    \caption{\textbf{Frequency distribution for dimension atcs: Self-reported attitudes about CS.}}
+\end{figure}
+
 \begin{itemize}% 
 \item If the algorithms chosen require preprocessing steps like feature selection or feature transformations, have they been properly documented?
 \item Based on the Data Exploration section, if there were abnormalities or characteristics that needed to be addressed, have they been properly corrected?
