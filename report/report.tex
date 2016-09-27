@@ -30,7 +30,7 @@ To predict gender in intro CS at Berkeley we suggest the following strategy:
 \section*{Metrics}
 
 
-Predicting gender in intro CS is a supervised learning problem. To determine the performance of the model, I have selected ``accuracy" as the metric of most interest. In addition to that, we will take a look at the confusion matrix for the output of each model to give us more insight into how good our classifiers are at discriminating the data based on gender. 
+Predicting gender in intro CS is a supervised learning problem. To determine the performance of the model, we will be using the $F_1$ score, i.e., the weighted average of precision and recall as our metric of choice. We are making this choice over accuracy because of the label imbalance in our data. In addition to that, we will take a look at the confusion matrix for the output of each model to give us more insight into how good our classifiers are at discriminating the data based on gender. 
 
 %----------------------------------------------------------------------------------------
 %  CHAPTER 
@@ -149,9 +149,53 @@ In doing these frequency distributions we are trying to gain an understanding of
 \end{figure}
 
 \section*{Implementation}
-We implemented the four learning algorithms. For each of the learners we implemented the baseline algorithm using a stratified shuffle split cross validation with a thousand folds and calculated the precision, recall and $F_1$ scores respectively.
+We implemented the four learning algorithms. For each of the learners we implemented the baseline algorithm using a stratified shuffle split cross validation with a thousand folds and calculated the $F_1$ scores and looked at the confusion matrices respectively.
+
+\setlength{\extrarowheight}{1.5pt}
+\begin{table}[!htbp]
+\caption{Scores} %title of the table
+\centering % centering table
+\begin{tabular}{|p{6cm}|p{1.5cm}|} % creating four columns
+\hline % inserts single-line
 
 
+\multicolumn{2}{|c|}{}\\
+\multicolumn{2}{|c|}{Result of training the baseline classifiers}\\[5pt]
+\hline
+Classifier & F1 Score\\[0.5ex]
+\hline % inserts single-line
+
+SVC     & 0.541\% \\
+DecisionTree       & 0.579\% \\
+RandomForestClassifier   & 0.608\% \\
+XGBClassifier            & 0.693\% \\
+
+\hline% inserts single-line
+\end{tabular}
+\label{tableBenchMarkScores}
+\end{table}
+
+\begin{figure}[!hbtp]
+\centering
+    \subfloat[Random Forest]{%
+    \includegraphics[width=0.65\textwidth]{figures/random_forest_CM}
+    \label{RFCM}}
+    \subfloat[Decision Tree]{%
+    \includegraphics[width=0.65\textwidth]{figures/decision_tree_CM}
+    \label{DTCM}}
+
+    \quad
+
+
+    \subfloat[XgBoost]{%
+    \includegraphics[width=0.65\textwidth]{figures/xgboost_CM}
+    \label{XGBCM}}
+    \subfloat[SVC]{%
+    \includegraphics[width=0.65\textwidth]{figures/svc_CM}
+    \label{SVCCM}}
+
+    \caption{\textbf{Confusion Matrices of Baseline Classifiers}}
+\end{figure}
 
 \section*{Refinement}
 

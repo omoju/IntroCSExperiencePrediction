@@ -181,7 +181,7 @@ def show_confusion_matrix(C,class_labels=['0','1']):
 
     Draws confusion matrix with associated metrics.
     
-    Function courtesy Matt Hancock
+    Modified Function courtesy Matt Hancock
     http://notmatthancock.github.io/2015/10/28/confusion-matrix.html
     """
     import matplotlib.pyplot as plt
@@ -196,31 +196,27 @@ def show_confusion_matrix(C,class_labels=['0','1']):
     NN = tn+fp # Num negative examples
     N  = NP+NN
 
-    fig = plt.figure(figsize=(8,8))
+    fig = plt.figure(figsize=(5,5))
     ax  = fig.add_subplot(111)
-    ax.imshow(C, interpolation='nearest', cmap=plt.cm.gray)
+    ax.imshow(C, interpolation='nearest', cmap=plt.cm.gist_heat)
 
     # Draw the grid boxes
-    ax.set_xlim(-0.5,2.5)
-    ax.set_ylim(2.5,-0.5)
-    ax.plot([-0.5,2.5],[0.5,0.5], '-k', lw=2)
-    ax.plot([-0.5,2.5],[1.5,1.5], '-k', lw=2)
-    ax.plot([0.5,0.5],[-0.5,2.5], '-k', lw=2)
-    ax.plot([1.5,1.5],[-0.5,2.5], '-k', lw=2)
+    ax.set_xlim(-0.5,0.5)
+    ax.set_ylim(0.5,-0.5)
 
     # Set xlabels
     ax.set_xlabel('Predicted Label', fontsize=16)
-    ax.set_xticks([0,1,2])
+    ax.set_xticks([0,1,1.5])
     ax.set_xticklabels(class_labels + [''])
     ax.xaxis.set_label_position('top')
     ax.xaxis.tick_top()
     # These coordinate might require some tinkering. Ditto for y, below.
-    ax.xaxis.set_label_coords(0.34,1.06)
+    ax.xaxis.set_label_coords(0.5,1.2)
 
     # Set ylabels
     ax.set_ylabel('True Label', fontsize=16, rotation=90)
     ax.set_yticklabels(class_labels + [''],rotation=90)
-    ax.set_yticks([0,1,2])
+    ax.set_yticks([0,1,1.5])
     ax.yaxis.set_label_coords(-0.09,0.65)
 
 
@@ -250,36 +246,6 @@ def show_confusion_matrix(C,class_labels=['0','1']):
             ha='center',
             bbox=dict(fc='w',boxstyle='round,pad=1'))
 
-    # Fill in secondary metrics: accuracy, true pos rate, etc...
-    ax.text(2,0,
-            'False Pos Rate: %.2f'%(fp / (fp+tn+0.)),
-            va='center',
-            ha='center',
-            bbox=dict(fc='w',boxstyle='round,pad=1'))
-
-    ax.text(2,1,
-            'True Pos Rate: %.2f'%(tp / (tp+fn+0.)),
-            va='center',
-            ha='center',
-            bbox=dict(fc='w',boxstyle='round,pad=1'))
-
-    ax.text(2,2,
-            'Accuracy: %.2f'%((tp+tn+0.)/N),
-            va='center',
-            ha='center',
-            bbox=dict(fc='w',boxstyle='round,pad=1'))
-
-    ax.text(0,2,
-            'Neg Pre Val: %.2f'%(1-fn/(fn+tn+0.)),
-            va='center',
-            ha='center',
-            bbox=dict(fc='w',boxstyle='round,pad=1'))
-
-    ax.text(1,2,
-            'Pos Pred Val: %.2f'%(tp/(tp+fp+0.)),
-            va='center',
-            ha='center',
-            bbox=dict(fc='w',boxstyle='round,pad=1'))
 
 
     plt.tight_layout()
