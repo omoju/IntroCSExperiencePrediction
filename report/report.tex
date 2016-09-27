@@ -243,9 +243,13 @@ We tuned our model using sklearn's \texttt{GridSearch} in conjunction with a \{k
     \end{itemize}
 \end{itemize}
 
-Once we performed our search through the hyper-parameter space to find the combination of hyper-parameters that maximized the performance of our classifier, we were able to improve the previous $F_1$ score by SOMETHING\%. Here is the final model for classifying gender in introductory CS.
+Once we performed our search through the hyper-parameter space to find the combination of hyper-parameters that maximized the performance of our classifier, we were able to improve the previous $F_1 0.72\%$ score by SOMETHING\%. Here is the final model for classifying gender in introductory CS. 
 \begin{verbatim}
-XGBClassifier()
+XGBClassifier(base_score=0.5, colsample_bylevel=1, colsample_bytree=0.6,
+       gamma=0, learning_rate=0.2222, max_delta_step=0, max_depth=6,
+       min_child_weight=1, missing=nan, n_estimators=600, nthread=-1,
+       objective='binary:logistic', reg_alpha=0, reg_lambda=1,
+       scale_pos_weight=1, seed=0, silent=1, subsample=0.7)
 \end{verbatim}
 
 
