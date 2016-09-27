@@ -149,7 +149,7 @@ In doing these frequency distributions we are trying to gain an understanding of
 \end{figure}
 
 \section*{Implementation}
-We implemented the four learning algorithms. For each of the learners we implemented the baseline algorithm using a stratified shuffle split cross validation with a thousand folds and calculated the $F_1$ scores and looked at the confusion matrices respectively.
+We implemented the four learning algorithms. For each of the learners we implemented the baseline algorithm using a stratified shuffle split cross validation with a thousand folds and calculated the $F_1$ scores and looked at the confusion matrices respectively. 
 
 \setlength{\extrarowheight}{1.5pt}
 \begin{table}[!htbp]
@@ -197,7 +197,14 @@ XGBClassifier            & 0.693\% \\
     \caption{\textbf{Confusion Matrices of Baseline Classifiers}}
 \end{figure}
 
-\section*{Refinement}
+Plot first two xgboost trees to see which features were doing the most work of splitting the data.
+
+
+\begin{figure}[!hbtp]
+\centering
+    \includegraphics[width=0.8\textwidth]{figures/X_graph}
+    \caption{\textbf{XgBoost estimator decision tree. }\textit{}}\label{plot_tree}
+\end{figure}
 
 %----------------------------------------------------------------------------------------
 %  CHAPTER 
@@ -208,8 +215,39 @@ XGBClassifier            & 0.693\% \\
 
 \section*{Model Evaluation and Validation}
 
+We tuned our model using sklearn's \texttt{GridSearch} in conjunction with a \{k=50 fold\} \texttt{StratifiedShuffleSplit} function, we tuned both the tree parameters as well as the task parameters of our XGBoost classifier to control for over-fitting and improve over all performance. The parameters we tuned are as follows:
 
-\section*{Justification}
+\begin{itemize}
+\item Parameters for Tree Booster
+    \begin{itemize}
+        \item \texttt{max\_depth}
+        \begin{itemize}
+            \item Maximum depth of tree
+            \item Range [1, $\infty$], default 6, tuned on $[4, 6, 8, 10]$
+        \end{itemize}
+        \item \texttt{n\_estimators}
+        \begin{itemize}
+            \item Minimum number of trees
+            \item Range $[2,\infty]$ default 2, tuned on $range(100, 1100, 100)$
+        \end{itemize}
+
+    \end{itemize}
+
+\item Task Parameter
+    \begin{itemize}
+        \item \texttt{learning\_rate}
+        \begin{itemize}
+            \item Scale the contribution of each tree by learning rate
+            \item Range $[0, 1]$, tuned on $[0.2222, 0.4444, 0.6666, 0.8888]$
+        \end{itemize}
+    \end{itemize}
+\end{itemize}
+
+Once we performed our search through the hyper-parameter space to find the combination of hyper-parameters that maximized the performance of our classifier, we were able to improve the previous $F_1$ score by SOMETHING\%. Here is the final model for classifying gender in introductory CS.
+\begin{verbatim}
+XGBClassifier()
+\end{verbatim}
+
 
 
 %----------------------------------------------------------------------------------------
@@ -222,5 +260,3 @@ XGBClassifier            & 0.693\% \\
 
 \section*{Reflection}
 
-
-\section*{Improvement}
