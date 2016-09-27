@@ -151,6 +151,7 @@ In doing these frequency distributions we are trying to gain an understanding of
 \section*{Implementation}
 We implemented the four learning algorithms. For each of the learners we implemented the baseline algorithm using a stratified shuffle split cross validation with a thousand folds and calculated the $F_1$ scores and looked at the confusion matrices respectively. 
 
+
 \setlength{\extrarowheight}{1.5pt}
 \begin{table}[!htbp]
 \caption{Scores} %title of the table
@@ -175,6 +176,17 @@ XGBClassifier            & 0.693\% \\
 \label{tableBenchMarkScores}
 \end{table}
 
+In figure \ref{plot_tree} we see the decision tree for the first two xgboost trees. This figure gives us insight into which features were doing the most work of splitting the data, and consequently may have the largest impact on predicting gender in introductory CS experience.
+
+
+\begin{figure}[!hbtp]
+\centering
+    \includegraphics[width=1\textwidth]{figures/X_graph}
+    \caption{\textbf{XgBoost estimator decision tree. }\textit{}}\label{plot_tree}
+\end{figure}
+
+
+
 \begin{figure}[!hbtp]
 \centering
     \subfloat[Random Forest]{%
@@ -197,14 +209,7 @@ XGBClassifier            & 0.693\% \\
     \caption{\textbf{Confusion Matrices of Baseline Classifiers}}
 \end{figure}
 
-Plot first two xgboost trees to see which features were doing the most work of splitting the data.
 
-
-\begin{figure}[!hbtp]
-\centering
-    \includegraphics[width=0.8\textwidth]{figures/X_graph}
-    \caption{\textbf{XgBoost estimator decision tree. }\textit{}}\label{plot_tree}
-\end{figure}
 
 %----------------------------------------------------------------------------------------
 %  CHAPTER 
@@ -243,7 +248,7 @@ We tuned our model using sklearn's \texttt{GridSearch} in conjunction with a \{k
     \end{itemize}
 \end{itemize}
 
-Once we performed our search through the hyper-parameter space to find the combination of hyper-parameters that maximized the performance of our classifier, we were able to improve the previous $F_1 0.72\%$ score by SOMETHING\%. Here is the final model for classifying gender in introductory CS. 
+Once we performed our search through the hyper-parameter space to find the combination of hyper-parameters that maximized the performance of our classifier, we were able to improve the previous $F_1$ score by 0.027\%. Here is the final model for classifying gender in introductory CS. 
 \begin{verbatim}
 XGBClassifier(base_score=0.5, colsample_bylevel=1, colsample_bytree=0.6,
        gamma=0, learning_rate=0.2222, max_delta_step=0, max_depth=6,
@@ -252,7 +257,17 @@ XGBClassifier(base_score=0.5, colsample_bylevel=1, colsample_bytree=0.6,
        scale_pos_weight=1, seed=0, silent=1, subsample=0.7)
 \end{verbatim}
 
+\begin{figure}[!hbtp]
+\centering
+    \includegraphics[width=1\textwidth]{figures/Tuned_model_graph}
+    \caption{\textbf{Tuned XgBoost estimator decision tree. }\textit{}}\label{tuned_plot_tree}
+\end{figure}
 
+\begin{figure}[!hbtp]
+\centering
+    \includegraphics[width=0.8\textwidth]{figures/tuned_model_CM}
+    \caption{\textbf{Tuned XgBoost model confusion matrix. }\textit{}}\label{tuned_CM}
+\end{figure}
 
 %----------------------------------------------------------------------------------------
 %  CHAPTER 
