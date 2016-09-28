@@ -2,26 +2,28 @@
 %  CHAPTER CONTENTS
 %----------------------------------------------------------------------------------------
 
-\chapter*{Predicting gender in introductory CS}
+\chapter*{Predicting gender in introductory Computer Science (CS)}
 
 \section*{Project Overview}
 
-As I have often said, one of the biggest challenges of this century is successfully getting people into the technical workforce. We are now in the age of automation with autonomous cars driving down our streets and Alexa and Siri becoming an extension of our homes. With the increase of these systems, it is likely that we are also going to see an increase in technical jobs.
+One of the biggest challenges of this century is successfully getting people into the technical workforce. We are now in a new technological era with autonomous cars driving down our streets and bots like Alexa and Siri becoming an extension of our lives. As automation continues to gain ground, so too are the new industries it helps to create. This new era is creating a new kind of worker, the highly-skilled knowledge worker, in particular, the highly-skilled \emph{technology} knowledge worker.
 
-This shift in the workforce towards highly skilled, technical knowledge workers poses a challenge on the supply side; mostly because of a lack of presence of computer science in K-12 education; the under-production of post-secondary degrees in computer science;  the underrepresentation of women and the underrepresentation of ethnic minorities.
+This shift in the workforce towards highly skilled, technical knowledge workers poses a challenge on the supply side; mostly because of a lack of presence of computer science in K-12 education; the under-production of post-secondary degrees in computer science;  the underrepresentation of women and the underrepresentation of ethnic minorities. One of the solution that has been proffered for this problem is redesigning introductory computer science to broadening participation.  
 
-One of the solutions that have been proffered for this problems is redesigning introductory computer science to broadening participation.  
+As part of my doctoral study, I decided to study the socio-curricular factors that affect the decision to participate in introductory computer science through a data-driven lens. To do this, I designed a research study investigating the role of computer science self-identity centered around the experiences of undergraduates in two introductory computer science classes at UC Berkeley. 
 
-As part of my doctoral study, I decided to study the socio-curricular factors that affect the decision to participate in introductory computer science through a data-driven lens. To do this, I designed a research study investigating the role of computer science self-identity centered around the experiences of undergraduates in two introductory computer science classes at UC Berkeley.
+The major motivation for doing this project is to gain some insight into what factors most govern the experiences of historically underrepresented students as they enter the CS pipeline at the University level. For this particular study, the URMs are the 388 female students who are participating in these classes, for many of them, this represents their first experience with CS. 
+
+If we are able to truly understand what factors specifically \emph{increase} a \textbf{sense of belonging in CS} for URMs, then we can create environments where these factors abound. Once we have such an environment; we can determine the effect on both male and female students; if we find out that these kinds of environment positively support CS belonging in both groups, we can then make the recommendation that we design our CS learning environments along those lines. The first step in such a scheme would be to predict the salient factors around the gendered experience of CS, which is what this reason why this project exists.
 
 
 \section*{Problem Statement}
 
-With this project, the problem I am interested in investigating is the gendered experience of these the two CS classes in my study. Using machine learning algorithms, I want to predict and identify the most salient variables that govern the experience of men versus women in introductory CS at an elite research university like Berkeley.
+With this project, the problem I am interested in investigating is the gendered experience of the two CS classes in the study. Using machine learning algorithms, I want to predict and identify the most salient variables that govern the experience of men versus women in introductory CS at an elite research university like Berkeley.
 
-To predict gender in intro CS at Berkeley we suggest the following strategy:
+To predict gender in intro CS at Berkeley I will be using the following problem-solving strategy that is common to most machine learning challenges:
 \begin{enumerate}% 
-\item Explore the dataset to ensure its integrity and understand the context.
+\item Explore the dataset. Usually, I would explore the dataset to ensure its integrity and understand the context. But in this case, I will skip this step since I designed the study and collected the data, as such, I am well versed of the context. Further, I have done previous work on this dataset, so I know its boundaries.
 \item Identify features that may be used. If possible, engineer features that might provide greater discrimination.
 \item With the understanding that this a ``classification'' task, explore a couple of classifiers that might be well suited for the problem at hand.
 \item Once a classifier has been selected, tune it for optimality.
@@ -30,7 +32,16 @@ To predict gender in intro CS at Berkeley we suggest the following strategy:
 \section*{Metrics}
 
 
-Predicting gender in intro CS is a supervised learning problem. To determine the performance of the model, we will be using the $F_1$ score, i.e., the weighted average of precision and recall as our metric of choice. We are making this choice over accuracy because of the label imbalance in our data. In addition to that, we will take a look at the confusion matrix for the output of each model to give us more insight into how good our classifiers are at discriminating the data based on gender. 
+Predicting gender in intro CS is a supervised learning problem. To determine the performance of the model, I will be using the $F_1$ score, i.e., the weighted average of precision and recall as our metric of choice. I am choosing to use the $F_1$ score as my metric over the accuracy score because of the label imbalance in the dataset. Figure \ref{targetClass} shows a histogram of the class label. This dataset has a gender variable which we have expanded into two dummy variables: `gender\_Female' and `gender\_Male.' From this histogram, one can see there is a slight imbalance in the target labels in favor of males, with a ratio of 1.2.
+
+\begin{figure}[!hbtp]
+\centering
+
+    \caption{\textbf{Target Class. }\textit{The histogram shows a slightly unbalanced target dataset with 494 values of \{0: male\} and 388 values of \{1: female\}.}}
+
+    \includegraphics[width=1\textwidth]{figures/targetClass}
+    \label{targetClass}
+\end{figure}
 
 %----------------------------------------------------------------------------------------
 %  CHAPTER 
@@ -39,59 +50,48 @@ Predicting gender in intro CS is a supervised learning problem. To determine the
 \chapter*{Analysis}
 
 \section* {Dataset}
-This project uses a dataset which I created as part of my doctoral research. The dataset consists of survey responses. A copy of the survey instrument can be found in the appendix of this report \ref{surveyInstrument}. The survey instruments were developed to measure participants' self-reported efficacy along several dimensions. 
+The dataset used in this project consists of survey responses. A copy of the survey instrument can be found in the appendix of this report. The survey instruments were developed to measure participants' self-reported attitudes along several dimensions: 
 
 \begin{enumerate}% 
-\item Self-reported attitudes about CS
+\item CS beliefs
 \item Gendered belief about CS ability
 \item Career driven beliefs about CS
-\item Self-reported attitudes about computational thinking
-\item Self-reported attitudes about CS class belonging
-\item Self-reported beliefs about collegiality
+\item Computational thinking beliefs
+\item CS belonging
+\item Collegiality
+\end{enumerate}
+
+In addition, the survey also collected data around student background: 
+
+\begin{enumerate}% 
 \item Prior collegiate CS exposure
 \item CS mentors and role models
+\item University demographics
 \end{enumerate}
 
 
 
-Majority of the questionnaire uses a 5-point Likert scale (where 1 = Disagree, 3 = Neutral and 5 = Agree). A code book was created to facilitate ease of analysis and interpretability of results. Using the function \texttt{dataDescr()} gives an introduction to the dataset along with codes and the questions which those code represent. For individual look up of codes, the function \texttt{dataLookUp('atct\_8')} can be used.
-
-The dataset consists of 882 instances with no missing data. Further, there are 494 males and 388 female samples in the dataset.
-
-An interesting aspect of this dataset is that the class labels for our classification are slightly unbalanced at a ratio of around 1:1.2 for male students as can be seen in figure \ref{targetClass}. 
-
-\begin{figure}[!hbtp]
-\centering
-    \subfloat[]{%
-    \includegraphics[width=0.8\textwidth]{figures/targetClass}
-    \label{targetClass}}
-    
-    \caption{\textbf{Gender plot. }\textit{The histogram shows a slightly unbalanced target dataset with 494 values of \{0: male\} and 388 values of \{1: female\}.}}
-\end{figure}
-
+Majority of the questionnaire uses a 5-point Likert scale (where 1 = Strongly Disagree, 3 = Neutral and 5 = Strongly Agree). A code book was created to facilitate ease of analysis and interpretability of results. The dataset consists of 882 instances with no missing data. Further, there are 494 males and 388 female samples in the dataset. 
 
 
 \section*{Algorithms and Techniques}
 
-For the problem of predicting gender in intro CS I experimented with four different classifiers, a decision tree classifier, two ensemble methods and a support vector machine:
+For the problem of predicting gender in intro CS, I experimented with four different classifiers, a decision tree classifier, two ensemble methods and a support vector machine:
 
 \begin{enumerate}% 
-\item A RandomForestClassifier\\
-I selected this learner because it is considered one of the best off-the-shelf learning algorithm, and requires almost no tuning. 
-\item An eXtreme Gradient Boosted (XGBoost) Trees Classifier\\
-XGBoost is an advanced implementation of gradient boosting algorithm. From reading literature on machine learning in practice, the XGBoost classifier has differentiated itself as a classifier that has successfully demonstrated its performance in a wide range of problems from particle physics, to ad click-through rate prediction and so on. For example, ``among the 29 challenge winning solutions published at Kaggle's blog during 2015, 17 solutions used XGBoost.''
+\item I selected a Random Forest classifier because it is considered one of the best off-the-shelf learning algorithm, and requires almost no tuning. 
 
-\item Support Vector Machine (SVMs)\\
-I selected the SVMs because they are very robust classifiers and \textit{more importantly}, they have a method of \textit{biasing} the soft-margin constant, $C$, to correct for class imbalances. 
+\item Another selection was the eXtreme Gradient Boosted (XGBoost) trees classifier; which is an advanced implementation of the gradient boosting algorithm. From reading literature on machine learning in practice, the XGBoost classifier has differentiated itself as a classifier that has successfully demonstrated its performance in a wide range of problems. For example, ``among the 29 challenge winning solutions published at Kaggle's blog during 2015, 17 solutions used XGBoost.''
+
+\item The Support Vector Machine (SVMs) was selected because they are very robust classifiers and \textit{more importantly}, they have a method to correct for class imbalances. 
               
-\item Decision Tree Classifier\\
-The \textit{major} reason why the decision tree classifier was selected was its interpretability. For this problem domain, it is not just satisfactory to discriminate between male and female students, what learning researchers ultimately want is to gain \textit{insights} into what the salient factors around the experience of intro CS are so they can correct for negative outcomes.
+\item Finally a Decision Tree classifier was also selected. The \textit{major} reason why the decision tree classifier was selected was its interpretability. For this problem domain, it is not just satisfactory to discriminate between male and female students, what I ultimately want is to gain \textit{insights} into what the salient factors around the experience of intro CS are, based on gender.
 
 \end{enumerate}
 
 \section*{Benchmark}
 
-This is novel research, as a result, there are no benchmarks we can compare the performance of our classifiers with.
+This is novel research, as a result, there are no benchmarks to compare the performance of our classifiers with.
 
 
 %----------------------------------------------------------------------------------------
@@ -102,39 +102,44 @@ This is novel research, as a result, there are no benchmarks we can compare the 
 
 \section*{Data Preprocessing}
 
-To prepare our data for classification, we need to devise a scheme to transform all features into numeric data. This dataset as several non-numeric columns that need converting. Many of them are simply \texttt{yes} and \texttt{no}, e.g. \texttt{prcs\_2}. We can reasonably convert these into `1'/`0' (binary) values. For the columns whose values are `Nan', we will convert these to `0'. We removed the spaces from some column names with the understanding that the tree plotting algorithm for Xgboost will fail if column names have spaces. 
+To prepare the data for classification, all features need to be transformed into numeric data. This dataset has several non-numeric columns that need converting. Many of them take on \texttt{yes} and \texttt{no} values, e.g. \texttt{prcs\_2}. These can be reasonably convert these into `1'/`0' (binary) values. For the columns whose values are `Nan', these will be converted to `0'. Further, spaces will be removed from column names with the understanding that the tree plotting algorithm for Xgboost will fail if column names have spaces. 
 
-We scaled the features using a minimax scaler to get better output for our SVM. This yielded the following values:
+The feature were scaled using a minimax scaler to get better output for our SVM. This yielded the following values:
 \begin {itemize}
-\item Disagree = 0.0
-\item Somewhat disagree = 0.2
+\item Strongly Disagree = 0.0
+\item Disagree = 0.2
 \item Neutral = 0.6
-\item Somewhat agree = 0.8
-\item Agree = 1.0
+\item Agree = 0.8
+\item Strongly Agree = 1.0
 \end{itemize} 
 
 
 
 \section*{Frequency Distribution}
-We created a frequency distribution for some dimensions in our data to see if there are features that have extremely low variability in their distribution. From figures \ref{atct_dimension}, \ref{atcs_dimension}, and \ref{blg_dimension}, we know that these variables are broadly distributed.
+We created a frequency distribution for some dimensions in our data to see if there are features that have extremely low spread in their distribution. From figures \ref{atct_dimension}, \ref{atcs_dimension}, and \ref{blg_dimension}, we know that these variables are broadly distributed.
 
 \begin{figure}[!hbtp]
 \centering
-    \includegraphics[width=0.8\textwidth]{figures/atcs_dimension}
+    \caption{\textbf{Frequency distribution for dimension atcsgender. }\textit{Gendered belief about CS ability.}}\label{atcsgender_dimension}
+    \includegraphics[width=1\textwidth]{figures/atcsgender_dimension}
+\end{figure}
+
+\begin{figure}[!hbtp]
+\centering
     \caption{\textbf{Frequency distribution for dimension atcs. }\textit{Self-reported attitudes about CS.}}\label{atcs_dimension}
+    \includegraphics[width=1\textwidth]{figures/atcs_dimension}
 \end{figure}
 
 \begin{figure}[!hbtp]
 \centering
-
-    \includegraphics[width=0.8\textwidth]{figures/atct_dimension}
     \caption{\textbf{Frequency distribution for dimension atct. }\textit{Self-reported attitudes about computational thinking.}}\label{atct_dimension}
+    \includegraphics[width=1\textwidth]{figures/atct_dimension}
 \end{figure}
 
 \begin{figure}[!hbtp]
 \centering
-    \includegraphics[width=0.8\textwidth]{figures/blg_dimension}
     \caption{\textbf{Frequency distribution for dimension blg. }\textit{Self-reported attitudes about CS class belonging.}}\label{blg_dimension}
+    \includegraphics[width=1\textwidth]{figures/blg_dimension}
 \end{figure}
 
 From \ref{atcsgender_dimension}, we can see that the distribution for the dimension \texttt{atcsgender} is extremely skewed to the right, further we notice that \texttt{atcsgender\_2} is bimodal. 
@@ -142,14 +147,10 @@ From \ref{atcsgender_dimension}, we can see that the distribution for the dimens
 In doing these frequency distributions we are trying to gain an understanding of the variables and determine if we need to reject some of them, or collapse other.
 
 
-\begin{figure}[!hbtp]
-\centering
-    \includegraphics[width=0.8\textwidth]{figures/atcsgender_dimension}
-    \caption{\textbf{Frequency distribution for dimension atcsgender. }\textit{Gendered belief about CS ability.}}\label{atcsgender_dimension}
-\end{figure}
+
 
 \section*{Implementation}
-We implemented the four learning algorithms. For each of the learners we implemented the baseline algorithm using a stratified shuffle split cross validation with a thousand folds and calculated the $F_1$ scores and looked at the confusion matrices respectively. 
+We implemented the four learning algorithms. For each of the learners we implemented the baseline algorithm using a stratified shuffle split cross validation with 50 folds and calculated the $F_1$ scores and looked at the confusion matrices respectively. 
 
 
 \setlength{\extrarowheight}{1.5pt}

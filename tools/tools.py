@@ -107,6 +107,8 @@ def dataDescr():
 
     print "\nDemographics"
     print "- gender Could I please know your gender"
+    print "- reason_class What is your reason for taking this class"
+    print "- major What is your major?"
 
     print "\nCS mentors and role models"
     print "- mtr_1 Before I came to UC Berkeley, I knew people who have careers in Computer Science."
@@ -143,7 +145,7 @@ def process( CS61A_DATA, CS10SPRING_DATA_1, CS10SPRING_DATA_2  ):
     frames = [CS10SPRING_DATA_1, CS10SPRING_DATA_2, CS61A_DATA]
     student_data = pd.concat(frames, keys=['pre', 'post','61a'])
     columnsNotNeeded = ['timestamp', 'consent','name', 'name_1', 'name_2',
-                    'morecs','snap_python','hiphop_d1','hiphop_d2','song_ct', 'major']
+                    'morecs','snap_python','hiphop_d1','hiphop_d2','song_ct']
     student_data.drop(columnsNotNeeded, axis=1, inplace=True)
 
 
