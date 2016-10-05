@@ -1,4 +1,4 @@
-# Predicting gender in introductory Computer Science (CS). 
+# Identify Factors that Govern Intro CS Experience Based on Gender. 
 ### A Supervised Learning Project.   
 
 This work builds on previous research done in fulfillment of a Computer Science Education Ph.D., HipHopathy, A Socio-Curricular Study of Introductory Computer Science. 
