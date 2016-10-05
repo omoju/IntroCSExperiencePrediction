@@ -1,4 +1,4 @@
-# Model the Dynamics of Gender in Intro CS at UC Berkeley. 
+# Predicting gender in introductory Computer Science (CS). 
 ### A Supervised Learning Project.   
 
 This work builds on previous research done in fulfillment of a Computer Science Education Ph.D., HipHopathy, A Socio-Curricular Study of Introductory Computer Science. 
@@ -7,12 +7,12 @@ A mixed-methods formative research was conducted that sought to answer the quest
 
 In answering the central research questions concerning this study, an in-depth examination of the UC Berkeley course titled *The Beauty and Joy of Computing* was presented benchmarked against the UC Berkeley course titled *The Structure and Interpretation of Computer Programs.* 
 
-In the course of investigating the questions, the following data science projects were carried out:
+In the course of investigating these questions, the following data science projects were carried out:
 - [investigatingWhyURMsChooseCS](https://github.com/omoju/investigatingWhyURMsChooseCS)
 - [analyzingInterviewText](https://github.com/omoju/AnalyzingInterviewText)
 - [hiphopathy](https://github.com/omoju/hiphopathy)
 
-In addition to the previous work done, this project adds a predictive model for understanding the dynamics of gender in intro CS at Berkeley for the years 2014 through 2015.
+In addition to the previous work done, this project adds a predictive model for understanding the dynamics of gender in intro CS at Berkeley for years 2014 through 2015.
 
 
 ## Analysis
@@ -22,11 +22,9 @@ The technical implementation can be found in the [jupyter notebook](genderedCSEx
 
 ## Data
 
-The dataset that is used in this project is unfortunately not available for mass consumption, as it contains sensitive, *personally identifiable* student data.
+The dataset that is used in this project is unfortunately not available for mass consumption, as it contains sensitive, *personally identifiable* student data. This dataset was generated through the use of a survey instrument which contains the following attributes for each data point based on a Likert scale of 1 to 5, 1 *strongly disagree* and 5 corresponding to *strongly agree*. Some items have *yes* and *no* answers.
 
-The dataset was generate through the use of a survey instrument which contains the following attributes for each data point based on a likert scale of 1 to 5, 1 *strongly disagree* and 5 corresponding to *strongly agree*. Some items have *yes* and *no* answers.
-
-#### Self reported attitudes about CS
+#### Self-reported attitudes about CS
 - atcs_1 I like to use computer science to solve problems.
 - atcs_2 I can learn to understand computing concepts.
 - atcs_3 I can achieve good grades (C or better) in computing courses.
@@ -46,7 +44,7 @@ The dataset was generate through the use of a survey instrument which contains t
 - atcsjob_1 Knowledge of computing will allow me to secure a good job.
 - atcsjob_2 My career goals do not require that I learn computing skills.
 
-#### Self reported attitudes about computational thinking
+#### Self-reported attitudes about computational thinking
 - atct_1 I am good at solving a problem by thinking about similar problems I’ve solved before.
 - atct_2 I have good research skills.
 - atct_3 I am good at using online search tools.
@@ -56,13 +54,13 @@ The dataset was generate through the use of a survey instrument which contains t
 - atct_7 I’m good at ignoring irrelevant details to solve a problem.
 - atct_8 I know how to write a computer program to solve a problem.
 
-#### Self reported attitudes about CS class belonging
+#### Self-reported attitudes about CS class belonging
 - blg_1 In this class, I feel I belong.
 - blg_2 In this class, I feel awkward and out of place.
 - blg_3 In this class, I feel like my ideas count.
 - blg_4 In this class, I feel like I matter.
 
-#### Self reported beliefs about collegiality
+#### Self-reported beliefs about collegiality
 - clet_1 I work well in teams.
 - clet_2 I think about the ethical, legal, and social implications of computing.
 - cltrcmp_1 I am comfortable interacting with peers from different backgrounds than my own (based on race, sexuality, income, and so on.)
