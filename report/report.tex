@@ -122,35 +122,43 @@ The feature were scaled using a minimax scaler to get better output for our SVM.
 
 
 \section*{Frequency Distribution}
-I created a frequency distribution for some dimensions in our data to see if there are features that have extremely low spread in their distribution. From figures \ref{atct_dimension}, \ref{atcs_dimension}, and \ref{blg_dimension}, I know that these variables are broadly distributed.
+I created a density estimation for some dimensions in the data to gain an understanding of the variables and determine if I need to reject some of them, or collapse others. 
+
+From \ref{atcsgender_dimension}, I can see that the distribution for the dimension \texttt{atcsgender} is extremely skewed to the right, further the median of the distribution is around the 0.0 to 0.25\% mark, which corresponds to ``strongly disagree.'' I was particularly interested in exploring this dimension because it asks the students questions around gendered ideas of intelligence.
+\begin {itemize}
+\item atcsgender\_1: Women are less capable of success in CS than men.
+\item atcsgender\_2: Women are smarter than men.
+\item atcsgender\_3: Men have better math and science abilities than women.
+\end{itemize} 
+
+
+From figures \ref{atct_dimension}, \ref{atcs_dimension}, and \ref{blg_dimension}, I know that these variables are broadly distributed.
 
 \begin{figure}[!hbtp]
 \centering
-    \caption{\textbf{Frequency distribution for dimension atcsgender. }\textit{Gendered belief about CS ability.}}\label{atcsgender_dimension}
-    \includegraphics[width=1\textwidth]{figures/atcsgender_dimension}
+    \caption{\textbf{Density estimation for dimension atcsgender. }\textit{Gendered belief about CS ability.}}\label{atcsgender_dimension}
+    \includegraphics[width=0.7\textwidth]{figures/atcsgender_kde}
 \end{figure}
 
 \begin{figure}[!hbtp]
 \centering
-    \caption{\textbf{Frequency distribution for dimension atcs. }\textit{Self-reported attitudes about CS.}}\label{atcs_dimension}
-    \includegraphics[width=1\textwidth]{figures/atcs_dimension}
+    \caption{\textbf{Density estimation for dimension atcs. }\textit{Self-reported attitudes about CS.}}\label{atcs_dimension}
+    \includegraphics[width=0.7\textwidth]{figures/atcs_kde}
 \end{figure}
 
 \begin{figure}[!hbtp]
 \centering
-    \caption{\textbf{Frequency distribution for dimension atct. }\textit{Self-reported attitudes about computational thinking.}}\label{atct_dimension}
-    \includegraphics[width=1\textwidth]{figures/atct_dimension}
+    \caption{\textbf{Density estimation for dimension atct. }\textit{Self-reported attitudes about computational thinking.}}\label{atct_dimension}
+    \includegraphics[width=0.7\textwidth]{figures/atct_kde}
 \end{figure}
 
 \begin{figure}[!hbtp]
 \centering
-    \caption{\textbf{Frequency distribution for dimension blg. }\textit{Self-reported attitudes about CS class belonging.}}\label{blg_dimension}
-    \includegraphics[width=1\textwidth]{figures/blg_dimension}
+    \caption{\textbf{Density estimation for dimension blg. }\textit{Self-reported attitudes about CS class belonging.}}\label{blg_dimension}
+    \includegraphics[width=0.7\textwidth]{figures/blg_kde}
 \end{figure}
 
-From \ref{atcsgender_dimension}, I can see that the distribution for the dimension \texttt{atcsgender} is extremely skewed to the right, further I notice that \texttt{atcsgender\_2} is bimodal. 
 
-In doing these frequency distributions I are trying to gain an understanding of the variables and determine if I need to reject some of them, or collapse other.
 
 
 
