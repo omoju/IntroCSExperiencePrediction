@@ -6,25 +6,27 @@
 
 \section*{Project Overview}
 
-One of the biggest challenges of this century is successfully getting people into the technical workforce. We are now in a new technological era with autonomous cars driving down our streets and bots like Alexa and Siri becoming an extension of our lives. As automation continues to gain ground, so too are the new industries it helps to create. This new era is creating a new kind of worker, the highly-skilled knowledge worker, in particular, the highly-skilled \emph{technology} knowledge worker.
+One of the biggest challenges at the start of this century is successfully getting people into the technical workforce. We are now in a new technological era with autonomous cars driving down our streets and bots like Alexa and Siri becoming an extension of our lives. As automation continues to gain ground, so too are the new industries it helps to create. This new era is creating a new kind of worker, the highly-skilled knowledge worker, in particular, the highly-skilled \emph{technology} knowledge worker.
 
-This shift in the workforce towards highly skilled, technical knowledge workers poses a challenge on the supply side; mostly because of a lack of presence of computer science in K-12 education; the under-production of post-secondary degrees in computer science;  the underrepresentation of women and the underrepresentation of ethnic minorities. One of the solution that has been proffered for this problem is redesigning introductory computer science to broadening participation.  
+This shift in the workforce towards highly skilled, technical knowledge workers poses a challenge on the supply side; mostly because of a lack of presence of computer science in K-12 education; the under-production of post-secondary degrees in computer science;  the underrepresentation of women and/or the underrepresentation of ethnic minorities. One of the solution that has been proffered for this problem is redesigning introductory computer science to broadening participation.  
 
 As part of my doctoral study, I decided to study the socio-curricular factors that affect the decision to participate in introductory computer science through a data-driven lens. To do this, I designed a research study investigating the role of computer science self-identity centered around the experiences of undergraduates in two introductory computer science classes at UC Berkeley. 
 
-The major motivation for doing this project is to gain some insight into what factors most govern the experiences of historically underrepresented students as they enter the CS pipeline at the University level. For this particular study, the URMs are the 388 female students who are participating in these classes, for many of them, this represents their first experience with CS. 
+The major motivation for doing this project is to gain some insight into what factors most govern the experiences of historically underrepresented students as they enter the CS pipeline at the University level.
 
-If we are able to truly understand what factors specifically \emph{increase} a \textbf{sense of belonging in CS} for URMs, then we can create environments where these factors abound. Once we have such an environment; we can determine the effect on both male and female students; if we find out that these kinds of environment positively support CS belonging in both groups, we can then make the recommendation that we design our CS learning environments along those lines. The first step in such a scheme would be to predict the salient factors around the gendered experience of CS, which is what this reason why this project exists.
+If we are able to truly understand indicators that specifically \emph{increase} a \textbf{sense of belonging in CS} for URMs, then we can create environments where these factors abound. Once we have such an environment; we can determine the effect on both male and female students; if we find out that these kinds of environment positively support CS belonging in both groups, we can then make the recommendation that we design our CS learning environments along those lines. The first step in such a scheme would be to determine the salient factors around the gendered experience of CS, which is what this reason why this project exists.
 
 
 \section*{Problem Statement}
 
-With this project, the problem I am interested in investigating is the gendered experience of the two CS classes in the study. Using machine learning algorithms, I want to predict and identify the most salient variables that govern the experience of men versus women in introductory CS at an elite research university like Berkeley.
+With this project, the problem I am interested in investigating is the gendered experience of the two CS classes in the study. Using machine learning algorithms, I want to identify the leading indicators of the experience of belonging broken down by gender in introductory CS at an elite research university like Berkeley.
 
-To predict gender in intro CS at Berkeley I will be using the following problem-solving strategy that is common to most machine learning challenges:
+To solve this problem, I will follow the following course of action:
 \begin{enumerate}% 
-\item Explore the dataset. Usually, I would explore the dataset to ensure its integrity and understand the context. But in this case, I will skip this step since I designed the study and collected the data, as such, I am well versed of the context. Further, I have done previous work on this dataset, so I know its boundaries.
-\item Identify features that may be used. If possible, engineer features that might provide greater discrimination.
+\item Explore the dataset.\\
+Usually, I would explore the dataset to ensure its integrity and understand the context. But in this case, I will skip this step since I designed the study and collected the data, as such, I am well versed of the context. Further, I have done previous work on this dataset, so I know its boundaries.
+\item Identify features that may be used.\\ 
+If possible, engineer features that might provide greater discrimination.
 \item With the understanding that this a ``classification'' task, explore a couple of classifiers that might be well suited for the problem at hand.
 \item Once a classifier has been selected, tune it for optimality.
 \end{enumerate}
@@ -32,7 +34,11 @@ To predict gender in intro CS at Berkeley I will be using the following problem-
 \section*{Metrics}
 
 
-Predicting gender in intro CS is a supervised learning problem. To determine the performance of the model, I will be using the $F_1$ score, i.e., the weighted average of precision and recall as our metric of choice. I am choosing to use the $F_1$ score as my metric over the accuracy score because of the label imbalance in the dataset. Figure \ref{targetClass} shows a histogram of the class label. This dataset has a gender variable which we have expanded into two dummy variables: `gender\_Female' and `gender\_Male.' From this histogram, one can see there is a slight imbalance in the target labels in favor of males, with a ratio of 1.2.
+Predicting gender in intro CS is a supervised learning problem. To determine the performance of the model, I will be using the $F_1$ score, i.e., the weighted average of precision and recall as our metric of choice. 
+
+I am choosing to use the $F_1$ score as my metric of evaluation over the accuracy score because my particular dataset has more male students in it than female students. You can see this imbalance in figure \ref{targetClass}. If I used accuracy, because this imbalance is there, my results could be misleading. 
+
+Beyond precision and recall, what we will lean on to give us confidence about our model will be taking a look at the confusion matrix that each model generates. This matrix will let us see which model most accurately \emph{identifies female} students. This will be the \textbf{most important} evaluation metric because that is the segment on the student population we are most interested in learning what indicators will point towards a sense of CS belonging.
 
 \begin{figure}[!hbtp]
 \centering
