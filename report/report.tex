@@ -59,25 +59,75 @@ Beyond precision and recall, what I will lean on to give us confidence about our
 The dataset used in this project consists of survey responses. A copy of the survey instrument can be found in the appendix of this report. The survey instruments were developed to measure participants' self-reported attitudes along several dimensions: 
 
 \begin{enumerate}% 
-\item CS beliefs
-\item Gendered belief about CS ability
-\item Career driven beliefs about CS
-\item Computational thinking beliefs
-\item CS belonging
-\item Collegiality
+\item \texttt{atcs}: CS beliefs
+\item \texttt{atcsgender}: Gendered belief about CS ability
+\item \texttt{atcsjob}: Career driven beliefs about CS
+\item \texttt{atct}: Computational thinking beliefs
+\item \texttt{blg}: CS belonging
+\item \texttt{cltrcmp}: Collegiality
 \end{enumerate}
 
 In addition, the survey also collected data around student background: 
 
 \begin{enumerate}% 
-\item Prior collegiate CS exposure
-\item CS mentors and role models
+\item \texttt{prcs}: Prior collegiate CS exposure
+\item \texttt{mtr}: CS mentors and role models
 \item University demographics
 \end{enumerate}
 
 
 
 Majority of the questionnaire uses a 5-point Likert scale (where 1 = Strongly Disagree, 3 = Neutral and 5 = Strongly Agree). A code book was created to facilitate ease of analysis and interpretability of results. The dataset consists of 882 instances with no missing data. Further, there are 494 males and 388 female samples in the dataset. 
+
+
+%----------------------------------------------------------------------------------------
+%  CHAPTER 
+%----------------------------------------------------------------------------------------
+
+
+\section*{Data Preprocessing}
+
+To prepare the data for classification, all features need to be transformed into numeric data. This dataset has several non-numeric columns that need converting. Many of them take on \texttt{yes} and \texttt{no} values, e.g. \texttt{prcs\_2}. These can be reasonably convert these into `1'/`0' (binary) values. For the columns whose values are `Nan', these will be converted to `0'. Further, spaces will be removed from column names with the understanding that the tree plotting algorithm for Xgboost will fail if column names have spaces. 
+
+The feature were scaled using a minimax scaler to get better output for our SVM. This yielded the following values:
+\begin {itemize}
+\item Strongly Disagree = 0.0
+\item Disagree = 0.2
+\item Neutral = 0.6
+\item Agree = 0.8
+\item Strongly Agree = 1.0
+\end{itemize} 
+
+
+
+\section*{Summarizing the data}
+I created a density estimation for some dimensions in the data to gain an understanding of the variables and determine if I need to reject some of them, or collapse others. 
+
+\begin{figure}[!hbtp]
+\centering
+    \caption{\textbf{Density estimation for dimension atcsgender. }\textit{Gendered belief about CS ability.}}\label{atcsgender_dimension}
+    \includegraphics[width=0.7\textwidth]{figures/atcsgender_kde}
+\end{figure}
+
+From \ref{atcsgender_dimension}, I can see that the distribution for the dimension \texttt{atcsgender} is extremely skewed to the right, further, by performing a percentile transformation on the dimension I was able to infer that about 50\% of students ``strongly disagree'' with most of the questions in this dimension. I was particularly interested in exploring this dimension because it asks the students questions around gendered ideas of intelligence.
+\begin {itemize}
+\item atcsgender\_1: Women are less capable of success in CS than men.
+\item atcsgender\_2: Women are smarter than men.
+\item atcsgender\_3: Men have better math and science abilities than women.
+\end{itemize} 
+
+\begin{figure}[!hbtp]
+\centering
+    \caption{\textbf{Density estimation for dimension atct. }\textit{Self-reported attitudes about computational thinking.}}\label{atct_dimension}
+    \includegraphics[width=0.7\textwidth]{figures/atct_kde}
+\end{figure}
+For computational thinking, from figure \ref{atct_dimension} we see that most of the data in this dimension follow a similar distribution. In addition, approximately 50\% of students generally agree with the questions in this dimension.
+\begin{figure}[!hbtp]
+\centering
+    \caption{\textbf{Density estimation for dimension atcs. }\textit{Self-reported attitudes about CS.}}\label{atcs_dimension}
+    \includegraphics[width=0.7\textwidth]{figures/atcs_kde}
+\end{figure}
+Similarly, when it comes to favoring CS ability, about 50\% of students general agree with the assertions. 
 
 
 \section*{Algorithms and Techniques}
@@ -98,70 +148,6 @@ For the problem of determining the factors that predict intro CS experience base
 \section*{Benchmark}
 
 This is novel research, as a result, there are no benchmarks to compare the performance of our classifiers with.
-
-
-%----------------------------------------------------------------------------------------
-%  CHAPTER 
-%----------------------------------------------------------------------------------------
-\chapter*{Methodology}
-
-
-\section*{Data Preprocessing}
-
-To prepare the data for classification, all features need to be transformed into numeric data. This dataset has several non-numeric columns that need converting. Many of them take on \texttt{yes} and \texttt{no} values, e.g. \texttt{prcs\_2}. These can be reasonably convert these into `1'/`0' (binary) values. For the columns whose values are `Nan', these will be converted to `0'. Further, spaces will be removed from column names with the understanding that the tree plotting algorithm for Xgboost will fail if column names have spaces. 
-
-The feature were scaled using a minimax scaler to get better output for our SVM. This yielded the following values:
-\begin {itemize}
-\item Strongly Disagree = 0.0
-\item Disagree = 0.2
-\item Neutral = 0.6
-\item Agree = 0.8
-\item Strongly Agree = 1.0
-\end{itemize} 
-
-
-
-\section*{Frequency Distribution}
-I created a density estimation for some dimensions in the data to gain an understanding of the variables and determine if I need to reject some of them, or collapse others. 
-
-From \ref{atcsgender_dimension}, I can see that the distribution for the dimension \texttt{atcsgender} is extremely skewed to the right, further the median of the distribution is around the 0.0 to 0.25\% mark, which corresponds to ``strongly disagree.'' I was particularly interested in exploring this dimension because it asks the students questions around gendered ideas of intelligence.
-\begin {itemize}
-\item atcsgender\_1: Women are less capable of success in CS than men.
-\item atcsgender\_2: Women are smarter than men.
-\item atcsgender\_3: Men have better math and science abilities than women.
-\end{itemize} 
-
-
-From figures \ref{atct_dimension}, \ref{atcs_dimension}, and \ref{blg_dimension}, I know that these variables are broadly distributed.
-
-\begin{figure}[!hbtp]
-\centering
-    \caption{\textbf{Density estimation for dimension atcsgender. }\textit{Gendered belief about CS ability.}}\label{atcsgender_dimension}
-    \includegraphics[width=0.7\textwidth]{figures/atcsgender_kde}
-\end{figure}
-
-\begin{figure}[!hbtp]
-\centering
-    \caption{\textbf{Density estimation for dimension atcs. }\textit{Self-reported attitudes about CS.}}\label{atcs_dimension}
-    \includegraphics[width=0.7\textwidth]{figures/atcs_kde}
-\end{figure}
-
-\begin{figure}[!hbtp]
-\centering
-    \caption{\textbf{Density estimation for dimension atct. }\textit{Self-reported attitudes about computational thinking.}}\label{atct_dimension}
-    \includegraphics[width=0.7\textwidth]{figures/atct_kde}
-\end{figure}
-
-\begin{figure}[!hbtp]
-\centering
-    \caption{\textbf{Density estimation for dimension blg. }\textit{Self-reported attitudes about CS class belonging.}}\label{blg_dimension}
-    \includegraphics[width=0.7\textwidth]{figures/blg_kde}
-\end{figure}
-
-
-
-
-
 
 \section*{Implementation}
 I implemented the four learning algorithms. For each of the learners I implemented the baseline algorithm using a stratified shuffle split cross validation with 50 folds and calculated the $F_1$ scores and looked at the confusion matrices respectively. 
