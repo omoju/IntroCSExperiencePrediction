@@ -145,7 +145,7 @@ def process( CS61A_DATA, CS10SPRING_DATA_1, CS10SPRING_DATA_2  ):
     frames = [CS10SPRING_DATA_1, CS10SPRING_DATA_2, CS61A_DATA]
     student_data = pd.concat(frames, keys=['pre', 'post','61a'])
     columnsNotNeeded = ['timestamp', 'consent','name', 'name_1', 'name_2',
-                    'morecs','snap_python','hiphop_d1','hiphop_d2','song_ct']
+                    'morecs','snap_python','hiphop_d1','hiphop_d2','song_ct', 'major']
     student_data.drop(columnsNotNeeded, axis=1, inplace=True)
 
 
