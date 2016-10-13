@@ -150,11 +150,11 @@ For the problem of determining the factors that predict intro CS experience base
 \begin{enumerate}% 
 \item I selected a Random Forest classifier because it is considered one of the best off-the-shelf learning algorithm, and requires almost no tuning. 
 
-\item Another selection was the eXtreme Gradient Boosted (XGBoost) trees classifier; which is an advanced implementation of the gradient boosting algorithm. From reading literature on machine learning in practice, the XGBoost classifier has differentiated itself as a classifier that has successfully demonstrated its performance in a wide range of problems. For example, ``among the 29 challenge winning solutions published at Kaggle's blog during 2015, 17 solutions used XGBoost.''
+\item I selected an eXtreme Gradient Boosted (XGBoost) trees classifier; which is an advanced implementation of the gradient boosting algorithm. From reading literature on machine learning in practice, the XGBoost classifier has differentiated itself as a classifier that has successfully demonstrated its performance in a wide range of problems. For example, ``among the 29 challenge winning solutions published at Kaggle's blog during 2015, 17 solutions used XGBoost.''
 
-\item The Support Vector Machine (SVMs) was selected because they are very robust classifiers and \textit{more importantly}, they have a method to correct for class imbalances. 
+\item I selected a Support Vector Machine (SVMs) because they are very robust classifiers and \textit{more importantly}, they have a method to correct for class imbalances. 
               
-\item Finally a Decision Tree classifier was also selected. The \textit{major} reason why the decision tree classifier was selected was its interpretability. For this problem domain, it is not just satisfactory to discriminate between male and female students, what I ultimately want is to gain \textit{insights} into what the salient factors around the experience of intro CS are, based on gender.
+\item Finally I selected a Decision Tree classifier because it lends itself to interpretability. For this problem domain, it is not just satisfactory for me to discriminate between male and female students, what I ultimately want is to gain \textit{insights} into what the salient factors around the experience of intro CS are, based on gender.
 
 \end{enumerate}
 
@@ -187,19 +187,22 @@ XGBClassifier            & 57.61\% & 19.07\%\\
 
 \hline% inserts single-line
 \end{tabular}
-\label{tableBenchMarkScores}
+\label{tableBenchMarkScores}{}
 \end{table}
 
-In figure \ref{plot_tree} I see the decision tree for the first two xgboost trees. This figure gives us insight into which features were doing the most work of splitting the data, and consequently may have the largest impact on predicting gender in introductory CS experience.
+From running these baseline classifiers, I selected the xgboost classifier because it had the highest score. In addition, when I looked at the result of the confusion matrix, I decided to use the lowest \textbf{false negative} count for the female class as my evaluation metric. From figures \ref{DTCM} and \ref{XGBCM}, I can see that the decision tree and xgboost learners are tied for having the lowest score of false negatives for the female class.
 
+I plotted the second decision trees in the xgboost learners to see which features are doing the most work in splitting the data. From figure \ref{plot_tree}, I see it is: 
 
-\begin{figure}[!hbtp]
-\centering
-    \includegraphics[width=1\textwidth]{figures/X_graph}
-    \caption{\textbf{XgBoost estimator decision tree. }\textit{}}\label{plot_tree}
-\end{figure}
-
-
+\begin{enumerate}% 
+\item atct\_8: I know how to write a computer program to solve a problem.
+\item atcs\_4: I do not like using computer science to solve problems.
+\item atcsgender\_2: Women are smarter than men.
+\item atcsgender\_1: Women are less capable of success in CS than men.
+\item mtr\_3: I have role models within the Computer Science field that look like me.
+\item atcs\_3: I can achieve good grades (C or better) in computing courses.
+\item prepared: How prepared did you feel about this class before it started?
+\end{enumerate}
 
 \begin{figure}[!hbtp]
 \centering
@@ -224,7 +227,11 @@ In figure \ref{plot_tree} I see the decision tree for the first two xgboost tree
 \end{figure}
 
 
-
+\begin{figure}[!hbtp]
+\centering
+    \includegraphics[width=1.25\textwidth]{figures/X_graph}
+    \caption{\textbf{XgBoost estimator decision tree. }\textit{}}\label{plot_tree}
+\end{figure}
 %----------------------------------------------------------------------------------------
 %  CHAPTER 
 %----------------------------------------------------------------------------------------
@@ -264,11 +271,14 @@ I tuned our model using sklearn's \texttt{GridSearch} in conjunction with a \{k=
 
 Once I performed our search through the hyper-parameter space to find the combination of hyper-parameters that maximized the performance of our classifier, I were able to improve the previous $F_1$ score by 0.027\%. Here is the final model for classifying gender in introductory CS. 
 \begin{verbatim}
-XGBClassifier(base_score=0.5, colsample_bylevel=1, colsample_bytree=0.6,
-       gamma=0, learning_rate=0.2222, max_delta_step=0, max_depth=6,
-       min_child_weight=1, missing=nan, n_estimators=600, nthread=-1,
-       objective='binary:logistic', reg_alpha=0, reg_lambda=1,
-       scale_pos_weight=1, seed=0, silent=1, subsample=0.7)
+Best accuracy obtained: 0.621055664439
+Parameters:
+    n_estimators: 200
+    subsample: 0.7
+    learning_rate: 0.2222
+    colsample_bytree: 0.6
+    max_depth: 10
+
 \end{verbatim}
 
 \begin{figure}[!hbtp]
