@@ -36,11 +36,11 @@ If possible, engineer features that might provide greater discrimination.
 \section*{Metrics}
 
 
-Predicting gender in intro CS is a supervised learning problem. To determine the performance of the model, I will be using the $F_1$ score, i.e., the weighted average of precision and recall as our metric of choice. 
+Predicting gender in intro CS is a supervised learning problem. To determine the performance of the model, I will be using the $F_1$ score, i.e., the weighted average of precision and recall as my metric of choice. 
 
 I am choosing to use the $F_1$ score as my metric of evaluation over the accuracy score because my particular dataset has more male students in it than female students. You can see this imbalance in figure \ref{targetClass}. If I used accuracy, because this imbalance is there, my results could be misleading. 
 
-Beyond precision and recall, what I will lean on to give us confidence about our model will be taking a look at the confusion matrix that each model generates. This matrix will let us see which model most accurately \emph{identifies female} students. This will be the \textbf{most important} evaluation metric because that is the segment on the student population I are most interested in learning what indicators will point towards a sense of CS belonging.
+Beyond precision and recall, I will also lean on the result of the confusion matrix for each model. This matrix will let me see which model most accurately \emph{identifies female} students. This will be the \textbf{most important} evaluation metric because that is the segment of the student population I am most interested in discovering what determines their experience.
 
 \begin{figure}[!hbtp]
 \centering
@@ -89,9 +89,9 @@ Majority of the questionnaire uses a 5-point Likert scale (where 1 = Strongly Di
 
 \section*{Data Preprocessing}
 
-To prepare the data for classification, all features need to be transformed into numeric data. This dataset has several non-numeric columns that need converting. Many of them take on \texttt{yes} and \texttt{no} values, e.g. \texttt{prcs\_2}. These can be reasonably convert these into `1'/`0' (binary) values. For the columns whose values are `Nan', these will be converted to `0'. Further, spaces will be removed from column names with the understanding that the tree plotting algorithm for Xgboost will fail if column names have spaces. 
+To prepare the data for classification, all features need to be transformed into numeric data. This dataset has several non-numeric columns that need converting. Many of them take on \texttt{yes} and \texttt{no} values, e.g. \texttt{prcs\_2}. These can be reasonably convert these into `1'/`0' (binary) values. For the columns whose values are `Nan', these will be converted to `-1'. Further, whitespaces will be removed from column names with the understanding that the tree plotting algorithm for Xgboost will fail if column names have spaces. 
 
-The feature were scaled using a minimax scaler to get better output for our SVM. This yielded the following values:
+The features were scaled using a minimax scaler to get better output for our SVM. This yielded the following values:
 \begin {itemize}
 \item Strongly Disagree = 0.0
 \item Disagree = 0.2
