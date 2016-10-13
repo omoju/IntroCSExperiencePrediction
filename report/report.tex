@@ -122,10 +122,7 @@ So what does figure \ref{atcs_dimension} tell us about the data? From that figur
     \includegraphics[width=0.7\textwidth]{figures/atct_quantile}
 \end{figure}
 
-
-
-
-From \ref{atcsgender_dimension}, I can see that the distribution for the dimension \texttt{atcsgender} is extremely skewed to the right, further, by performing a percentile transformation on the dimension I was able to infer that about 50\% of students ``strongly disagree'' with most of the questions in this dimension. I was particularly interested in exploring this dimension because it asks the students questions around gendered ideas of intelligence.
+From \ref{atcsgender}, I can see that the distribution for the dimension \texttt{atcsgender} is really skewed to the right, i.e., most students \emph{strongly disagree} with the statements. That does not come as a suprise, what I found fascinating is that the median for \texttt{atcsgender\_2} is at the 25 percentile, which corresponds to ``neutral.'' You can see this in the boxplot in figure \ref{atcsgender_quantile}.
 \begin {itemize}
 \item atcsgender\_1: Women are less capable of success in CS than men.
 \item atcsgender\_2: Women are smarter than men.
@@ -134,14 +131,16 @@ From \ref{atcsgender_dimension}, I can see that the distribution for the dimensi
 
 \begin{figure}[!hbtp]
 \centering
-    \caption{\textbf{Density estimation for dimension atcsgender. }\textit{Gendered belief about CS ability.}}\label{atcsgender_dimension}
-    \includegraphics[width=0.7\textwidth]{figures/atcsgender_quantile}
+    \subfloat[]{%
+    \includegraphics[width=0.6\textwidth]{figures/atcsgender}
+    \label{atcsgender}}
+    \subfloat[]{%
+    \includegraphics[width=0.6\textwidth]{figures/atcsgender_quantile}
+    \label{atcsgender_quantile}}
+
+    \caption{\textbf{Dimensions of \texttt{atcsgender}.} \textit{Figure (a) Density estimation for the dimension. Figure (b) Boxplot for the same dimension.}}
 \end{figure}
 
-
-
-
-Similarly, when it comes to favoring CS ability, about 50\% of students general agree with the assertions. 
 
 
 \section*{Algorithms and Techniques}
