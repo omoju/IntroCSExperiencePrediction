@@ -92,7 +92,7 @@ Majority of the questionnaire uses a 5-point Likert scale (where 1 = Strongly Di
 To prepare the data for classification, all features need to be transformed into numeric data. This dataset has several non-numeric columns that need converting. Many of them take on \texttt{yes} and \texttt{no} values, e.g. \texttt{prcs\_2}. These can be reasonably convert these into `1'/`0' (binary) values. For the columns whose values are `Nan', these will be converted to `-1'. Further, whitespaces will be removed from column names with the understanding that the tree plotting algorithm for Xgboost will fail if column names have spaces. 
 
 The features were scaled using a minimax scaler to get better output for our SVM. This yielded the following values:
-\begin {itemize}
+\begin {itemize}    
 \item Strongly Disagree = 0.0
 \item Disagree = 0.2
 \item Neutral = 0.6
@@ -103,13 +103,27 @@ The features were scaled using a minimax scaler to get better output for our SVM
 
 
 \section*{Summarizing the data}
-I created a density estimation for some dimensions in the data to gain an understanding of the variables and determine if I need to reject some of them, or collapse others. 
-
 \begin{figure}[!hbtp]
 \centering
-    \caption{\textbf{Density estimation for dimension atcsgender. }\textit{Gendered belief about CS ability.}}\label{atcsgender_dimension}
-    \includegraphics[width=0.7\textwidth]{figures/atcsgender_kde}
+    \caption{\textbf{Density estimation for dimension atcs. }\textit{Self-reported attitudes about CS.}}\label{atcs}
+    \includegraphics[width=0.7\textwidth]{figures/atcs}
 \end{figure}
+I created a density estimation for some dimensions in the data to gain an understanding of the variables and determine if I need to reject some of them, or collapse others. The distributions of the dimensions looked very similary to that of \ref{atcs}. Most of the data is either skewed to the left or skewed to the right. As a result, I rejected using descriptive statistics to summarize the data in favor quantiles represented by boxplots as can be seen in figure \ref{atcs_dimension}. 
+\begin{figure}[!hbtp]
+\centering
+    \caption{\textbf{Quantiles for dimension \texttt{atcs. }}\textit{Self-reported attitudes about CS.}}\label{atcs_dimension}
+    \includegraphics[width=0.7\textwidth]{figures/atcs_quantile}
+\end{figure}
+
+So what does figure \ref{atcs_dimension} tell us about the data? From that figure, we can see that the median of this dimension is approximately at the 75 percentile, which based on our Likert scale dataset means most students generally agree with the mostly positive attitudinal questions asked about their CS beliefs. For computational thinking, from figure \ref{atct_dimension} we see that most of the data in this dimension follow a similar distribution.
+\begin{figure}[!hbtp]
+\centering
+    \caption{\textbf{Quantiles for dimension \texttt{atct.} }\textit{Self-reported attitudes about computational thinking.}}\label{atct_dimension}
+    \includegraphics[width=0.7\textwidth]{figures/atct_quantile}
+\end{figure}
+
+
+
 
 From \ref{atcsgender_dimension}, I can see that the distribution for the dimension \texttt{atcsgender} is extremely skewed to the right, further, by performing a percentile transformation on the dimension I was able to infer that about 50\% of students ``strongly disagree'' with most of the questions in this dimension. I was particularly interested in exploring this dimension because it asks the students questions around gendered ideas of intelligence.
 \begin {itemize}
@@ -120,15 +134,13 @@ From \ref{atcsgender_dimension}, I can see that the distribution for the dimensi
 
 \begin{figure}[!hbtp]
 \centering
-    \caption{\textbf{Density estimation for dimension atct. }\textit{Self-reported attitudes about computational thinking.}}\label{atct_dimension}
-    \includegraphics[width=0.7\textwidth]{figures/atct_kde}
+    \caption{\textbf{Density estimation for dimension atcsgender. }\textit{Gendered belief about CS ability.}}\label{atcsgender_dimension}
+    \includegraphics[width=0.7\textwidth]{figures/atcsgender_quantile}
 \end{figure}
-For computational thinking, from figure \ref{atct_dimension} we see that most of the data in this dimension follow a similar distribution. In addition, approximately 50\% of students generally agree with the questions in this dimension.
-\begin{figure}[!hbtp]
-\centering
-    \caption{\textbf{Density estimation for dimension atcs. }\textit{Self-reported attitudes about CS.}}\label{atcs_dimension}
-    \includegraphics[width=0.7\textwidth]{figures/atcs_kde}
-\end{figure}
+
+
+
+
 Similarly, when it comes to favoring CS ability, about 50\% of students general agree with the assertions. 
 
 
