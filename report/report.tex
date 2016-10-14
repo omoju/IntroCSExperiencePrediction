@@ -177,13 +177,13 @@ I implemented the four learning algorithms. For each of the learners I implement
 \multicolumn{3}{|c|}{}\\
 \multicolumn{3}{|c|}{Result of training the baseline classifiers}\\[5pt]
 \hline
-Classifier & F1 Score(Mean) & Standard Deviation\\[0.5ex]
+Classifier & Training Score & Prediction Score\\[0.5ex]
 \hline % inserts single-line
 
-SVC     & 54.63\% & 18.55\% \\
-DecisionTree       & 51.15\% & 17.82\%\\
-RandomForestClassifier   & 46.79\% & 20.99\%\\
-XGBClassifier            & 57.61\% & 19.07\%\\
+SVC     & 54.63\% & 54.12\% \\
+DecisionTree       & 51.15\% & 59.82\%\\
+RandomForestClassifier   & 46.79\% & 59.78\%\\
+XGBClassifier            & 57.61\% & 68.37\%\\
 
 \hline% inserts single-line
 \end{tabular}
@@ -296,7 +296,7 @@ I tuned our model using sklearn's \texttt{GridSearch} in conjunction with a \{k=
     \end{itemize}
 \end{itemize}
 
-Once I performed our search through the hyper-parameter space to find the combination of hyper-parameters that maximized the performance of our classifier, I were able to improve the previous $F_1$ score by 0.027\%. Here is the final model for classifying gender in introductory CS. 
+Once I performed our search through the hyper-parameter space to find the combination of hyper-parameters that maximized the performance of our classifier, I were able to improve the previous $F_1$ score by 6.63\%. Here is the final model for classifying gender in introductory CS. 
 \begin{verbatim}
 Best accuracy obtained: 0.621055664439
 Parameters:
