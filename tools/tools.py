@@ -164,7 +164,12 @@ def load_model():
     return clf
 
 def evaluate_chi(y, item):
-
+    """
+    y: a list of labels
+    item: a feature
+    
+    Evaluates a chi squared score for the feature.
+    """
     #contigency table of observed counts
     ct1 = pd.crosstab(y, item )
 
@@ -254,3 +259,21 @@ def show_confusion_matrix(C, filename, class_labels=['0','1']):
     plt.tight_layout()
     plt.savefig(filename, format='png', dpi=100)
     plt.show()
+    
+    
+def create_feature_map(features, filename):
+    """
+    features: list of feature names for an xgboost tree
+    filename: file name for the feature map file
+    
+    Creates a feature map for a xgboost model
+    
+    Courtesy Richard Xie
+    http://www.gladwinanalytics.com/blog/an-information-gain-based-feature-ranking-function-for-xgboost
+    """
+    outfile = open(filename, 'w')
+    i = 0
+    for feat in features:
+        outfile.write('{0}\t{1}\tq\n'.format(i, feat))
+        i = i + 1
+    outfile.close() 
