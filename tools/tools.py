@@ -10,7 +10,7 @@ dataPath = '/Users/omojumiller/Dropbox/Research/DissertationSubmission/'
 CS10SPRING_DATA_1 = pd.read_csv(dataPath+'Data/CS10_Pre_Responses_Spring2015.csv')
 CS10SPRING_DATA_2 = pd.read_csv(dataPath+'Data/CS10_Post_Responses_Spring2015.csv')
 CS61A_DATA = pd.read_csv(dataPath+'Data/CS61A_Responses_Fall2014.csv')
-MODEL_PICKLE_FILENAME = 'genderedCSExperience.pickle.dat'
+MODEL_PICKLE_FILENAME = 'data/genderedCSExperience.pickle.dat'
 
 ## Column names
 CS10SPRING_DATA_1.columns = ['timestamp',

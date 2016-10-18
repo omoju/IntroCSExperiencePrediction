@@ -17,7 +17,10 @@ In addition to the previous work done, this project adds a predictive model for 
 
 ## Analysis
 An analysis of this project can be found here [report/genderedCSExperience.pdf](report/genderedCSExperience.pdf)   
-The technical implementation can be found in the [jupyter notebook](genderedCSExperience.ipynb)
+The technical implementation can be found in:
+- [jupyter notebook](genderedCSExperience.ipynb)
+- [jupyter notebook](featureImportance.ipynb)
+
 
 
 ## Data
