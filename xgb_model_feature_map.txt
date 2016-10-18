@@ -38,7 +38,8 @@
 37	atct_6	q
 38	atct_8	q
 39	grade_B_or_below	q
-40	classmtr	q
-41	priorcs10	q
-42	cltrcmp_1	q
-43	blg_3	q
+40	reason_class_Other	q
+41	classmtr	q
+42	priorcs10	q
+43	cltrcmp_1	q
+44	blg_3	q
