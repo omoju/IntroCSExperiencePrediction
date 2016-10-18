@@ -30,7 +30,7 @@ Usually, I would explore the dataset to ensure its integrity and understand the 
 \item Identify features that may be used.\\ 
 If possible, engineer features that might provide greater discrimination.
 \item With the understanding that this a ``classification'' task, explore a couple of classifiers that might be well suited for the problem at hand.
-\item Once a classifier has been selected, tune it for optimality.
+\item Select appropriate classifier based on evaluation metric and tune it for optimality.
 \end{enumerate}
 
 \section*{Metrics}
@@ -267,19 +267,19 @@ Rank & Coded item & Description\\[0.5ex]
 \begin{figure}[!hbtp]
 \centering
     \subfloat[Feature Importance Base Model]{%
-    \includegraphics[width=0.5\textwidth]{figures/featureImportance}
+    \includegraphics[width=0.6\textwidth]{figures/featureImportance}
     \label{f_imp}}
     \subfloat[Feature Importance Tuned Model]{%
-    \includegraphics[width=0.5\textwidth]{figures/featureImportance_tuned}
+    \includegraphics[width=0.6\textwidth]{figures/featureImportance_tuned}
     \label{f_imp_tuned}}
 
     \qquad
 
     \subfloat[Feature Importance Based on Cover]{%
-    \includegraphics[width=0.5\textwidth]{figures/featureImportance_cover}
+    \includegraphics[width=0.6\textwidth]{figures/featureImportance_cover}
     \label{f_imp}}
     \subfloat[Feature Importance Based on Information Gain]{%
-    \includegraphics[width=0.5\textwidth]{figures/featureImportance_informationGain}
+    \includegraphics[width=0.6\textwidth]{figures/featureImportance_informationGain}
     \label{f_imp_tuned}}
 
     \caption{\textbf{XgBoost Feature Importance}}
