@@ -213,6 +213,83 @@ From running these baseline classifiers, I selected the xgboost classifier becau
     \caption{\textbf{Confusion Matrices of Baseline Classifiers}}
 \end{figure}
 
+
+%----------------------------------------------------------------------------------------
+%  CHAPTER 
+%----------------------------------------------------------------------------------------
+
+\chapter*{Results}
+
+
+\section*{Model Evaluation and Validation}
+
+I am going to tune my model based on some heuristics about the kinds of value ranges that are suitable for the hyper-parameters I want to learn. I will be using these values ranges for the hyper-parameters:
+
+\begin{itemize}
+\item Parameters for Tree Booster
+    \begin{itemize}
+        \item \texttt{max\_depth}
+        \begin{itemize}
+            \item Maximum depth of tree
+            \item Range [1, $\infty$], default 6, tuned on $[4, 6, 8, 10]$
+        \end{itemize}
+        \item \texttt{n\_estimators}
+        \begin{itemize}
+            \item Minimum number of trees
+            \item Range $[2,\infty]$ default 2, tuned on $range(100, 1100, 100)$
+        \end{itemize}
+
+    \end{itemize}
+
+\item Task Parameter
+    \begin{itemize}
+        \item \texttt{learning\_rate}
+        \begin{itemize}
+            \item Scale the contribution of each tree by learning rate
+            \item Range $[0, 1]$, tuned on $[0.2222, 0.4444, 0.6666, 0.8888]$
+        \end{itemize}
+    \end{itemize}
+\end{itemize}
+I will implement the tuning using sklearn's \texttt{GridSearch} in conjunction with a \{k=50 fold\} \texttt{StratifiedShuffleSplit} function. 
+
+\section*{Results of tuning}
+Once I performed the search through the hyper-parameter space to find the combination of hyper-parameters that maximized the performance of the selected classifier, I was able to \textbf{improve} the previous $F_1$ score by \textbf{6.63\%}, to achieve a prediction score of 75\%.
+
+From figures \ref{cfmatrix_base} and \ref{cfmatrix_tuned}, one can see that the \textbf{false negative} count for the female class has gone from 43 down to 32. This decision cost us a very small increase in the \textbf{false positive} count of the male class from 19 to 20. This is not too bad, so I will stick with this improved model.
+
+\begin{figure}[!hbtp]
+\centering
+    \subfloat[Base Model]{%
+    \includegraphics[width=0.6\textwidth]{figures/XGBoost}
+    \label{cfmatrix_base}}
+    \subfloat[Tuned Model]{%
+    \includegraphics[width=0.6\textwidth]{figures/tuned_model_CM}
+    \label{cfmatrix_tuned}}
+
+    \caption{\textbf{Confusion Matrix}}
+\end{figure}
+
+
+Looking at figure \ref{tuned_plot_tree}, the tuned model has a very complex tree that goes down ten levels, for each of its estimators. This model as segmented the data into 47 distinct types; you can see this by counting the number of leaf nodes.
+\begin{figure}[!hbtp]
+\centering
+    \includegraphics[width=1.4\textwidth]{figures/Tuned_model_graph}
+    \caption{\textbf{Tuned XgBoost estimator decision tree. }\textit{}}\label{tuned_plot_tree}
+\end{figure}
+
+Here is the final model for classifying gender in introductory CS. 
+\begin{verbatim}
+Best accuracy obtained: 0.621055664439
+Parameters:
+    n_estimators: 200
+    subsample: 0.7
+    learning_rate: 0.2222
+    colsample_bytree: 0.6
+    max_depth: 10
+
+\end{verbatim}
+
+
 \section*{Feature Importance}
 There are two things that need consideration when using xgBoost for understanding feature importance: the features that are doing the \emph{most} work in splitting the data, and the automatically generated feature importance ranking that is done in by the xgBoost algorithm.
 
@@ -287,68 +364,6 @@ Information gain, lets us know how valuable a feature is in discriminating the d
     \caption{\textbf{XgBoost Feature Importance}}
 \end{figure}
 
-
-
-%----------------------------------------------------------------------------------------
-%  CHAPTER 
-%----------------------------------------------------------------------------------------
-
-\chapter*{Results}
-
-
-\section*{Model Evaluation and Validation}
-
-I tuned our model using sklearn's \texttt{GridSearch} in conjunction with a \{k=50 fold\} \texttt{StratifiedShuffleSplit} function, I tuned both the tree parameters as well as the task parameters of our XGBoost classifier to control for over-fitting and improve over all performance. The parameters I tuned are as follows:
-
-\begin{itemize}
-\item Parameters for Tree Booster
-    \begin{itemize}
-        \item \texttt{max\_depth}
-        \begin{itemize}
-            \item Maximum depth of tree
-            \item Range [1, $\infty$], default 6, tuned on $[4, 6, 8, 10]$
-        \end{itemize}
-        \item \texttt{n\_estimators}
-        \begin{itemize}
-            \item Minimum number of trees
-            \item Range $[2,\infty]$ default 2, tuned on $range(100, 1100, 100)$
-        \end{itemize}
-
-    \end{itemize}
-
-\item Task Parameter
-    \begin{itemize}
-        \item \texttt{learning\_rate}
-        \begin{itemize}
-            \item Scale the contribution of each tree by learning rate
-            \item Range $[0, 1]$, tuned on $[0.2222, 0.4444, 0.6666, 0.8888]$
-        \end{itemize}
-    \end{itemize}
-\end{itemize}
-
-Once I performed our search through the hyper-parameter space to find the combination of hyper-parameters that maximized the performance of our classifier, I was able to improve the previous $F_1$ score by 6.63\%, to achieve a prediction score of 75\%. Here is the final model for classifying gender in introductory CS. 
-\begin{verbatim}
-Best accuracy obtained: 0.621055664439
-Parameters:
-    n_estimators: 200
-    subsample: 0.7
-    learning_rate: 0.2222
-    colsample_bytree: 0.6
-    max_depth: 10
-
-\end{verbatim}
-
-\begin{figure}[!hbtp]
-\centering
-    \includegraphics[width=1.4\textwidth]{figures/Tuned_model_graph}
-    \caption{\textbf{Tuned XgBoost estimator decision tree. }\textit{}}\label{tuned_plot_tree}
-\end{figure}
-
-\begin{figure}[!hbtp]
-\centering
-    \includegraphics[width=0.8\textwidth]{figures/tuned_model_CM}
-    \caption{\textbf{Tuned XgBoost model confusion matrix. }\textit{}}\label{tuned_CM}
-\end{figure}
 
 %----------------------------------------------------------------------------------------
 %  CHAPTER 
