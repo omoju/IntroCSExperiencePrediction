@@ -224,10 +224,10 @@ From figures \ref{firstXGraph} and \ref{secondXGraph}, I see that
 \begin{figure}[!hbtp]
 \centering
     \subfloat[First tree in the ensemble]{%
-    \includegraphics[width=0.7\textwidth]{figures/firstXGraph}
+    \includegraphics[width=0.5\textwidth]{figures/firstXGraph}
     \label{firstXGraph}}
     \subfloat[Second tree in the ensemble]{%
-    \includegraphics[width=0.7\textwidth]{figures/secondXGraph}
+    \includegraphics[width=0.5\textwidth]{figures/secondXGraph}
     \label{secondXGraph}}
 
     \caption{\textbf{XgBoost estimator regression trees}}
@@ -264,12 +264,25 @@ Rank & Coded item & Description\\[0.5ex]
 \label{tableFeatureImportance}{}
 \end{table}
 
-
-
 \begin{figure}[!hbtp]
 \centering
-    \includegraphics[width=1\textwidth]{figures/featureImportance}
-    \caption{\textbf{XgBoost Feature Importance. }\textit{}}\label{importance}
+    \subfloat[Feature Importance Base Model]{%
+    \includegraphics[width=0.5\textwidth]{figures/featureImportance}
+    \label{f_imp}}
+    \subfloat[Feature Importance Tuned Model]{%
+    \includegraphics[width=0.5\textwidth]{figures/featureImportance_tuned}
+    \label{f_imp_tuned}}
+
+    \qquad
+
+    \subfloat[Feature Importance Based on Cover]{%
+    \includegraphics[width=0.5\textwidth]{figures/featureImportance_cover}
+    \label{f_imp}}
+    \subfloat[Feature Importance Based on Information Gain]{%
+    \includegraphics[width=0.5\textwidth]{figures/featureImportance_informationGain}
+    \label{f_imp_tuned}}
+
+    \caption{\textbf{XgBoost Feature Importance}}
 \end{figure}
 
 
