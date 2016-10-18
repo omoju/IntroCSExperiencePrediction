@@ -1,5 +1,5 @@
 digraph {
-	graph [rankdir=LR]
+	graph [rankdir=TB]
 		0 [label="atcs_1<0.625" shape=circle]
 			0 -> 1 [label="yes, missing" color="#0000FF"]
 			0 -> 2 [label=no color="#FF0000"]
