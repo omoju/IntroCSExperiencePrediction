@@ -10,7 +10,6 @@ dataPath = '/Users/omojumiller/Dropbox/Research/DissertationSubmission/'
 CS10SPRING_DATA_1 = pd.read_csv(dataPath+'Data/CS10_Pre_Responses_Spring2015.csv')
 CS10SPRING_DATA_2 = pd.read_csv(dataPath+'Data/CS10_Post_Responses_Spring2015.csv')
 CS61A_DATA = pd.read_csv(dataPath+'Data/CS61A_Responses_Fall2014.csv')
-MODEL_PICKLE_FILENAME = 'data/genderedCSExperience.pickle.dat'
 
 ## Column names
 CS10SPRING_DATA_1.columns = ['timestamp',
@@ -154,10 +153,10 @@ def process( CS61A_DATA, CS10SPRING_DATA_1, CS10SPRING_DATA_2  ):
 def preprocess():
     return process( CS61A_DATA, CS10SPRING_DATA_1, CS10SPRING_DATA_2 )
 
-def load_model():
+def load_model(model_filename):
     
     try:
-        with open(MODEL_PICKLE_FILENAME, "r") as clf_infile:
+        with open(model_filename, "r") as clf_infile:
             clf = pickle.load(clf_infile)
     except:
         print "Could not load model"
@@ -257,6 +256,7 @@ def show_confusion_matrix(C, filename, class_labels=['0','1']):
 
 
     plt.tight_layout()
+    plt.show()
     plt.savefig(filename, format='png', dpi=100)
    
     
