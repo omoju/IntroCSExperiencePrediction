@@ -255,8 +255,8 @@ def show_confusion_matrix(C, filename, class_labels=['0','1']):
 
 
 
-    plt.tight_layout()
-    plt.show()
+    plt.tight_layout();
+    plt.show();
     plt.savefig(filename, format='png', dpi=100)
    
     

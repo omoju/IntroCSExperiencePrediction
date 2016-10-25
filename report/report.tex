@@ -163,7 +163,7 @@ For the problem of determining the factors that predict intro CS experience base
 This is novel research, as a result, there are no benchmarks to compare the performance of our classifiers with.
 
 \section*{Implementation}
-I implemented the four learning algorithms. For each of the learners I implemented the baseline algorithm using a stratified shuffle split cross validation with 50 folds and calculated the $F_1$ scores and looked at the confusion matrices respectively. 
+I implemented the four learning algorithms. For each of the learners I implemented the baseline algorithm using a stratified shuffle split cross validation with 10 folds and calculated the $F_1$ scores and looked at the confusion matrices respectively. 
 
 
 \setlength{\extrarowheight}{1.5pt}
@@ -180,10 +180,10 @@ I implemented the four learning algorithms. For each of the learners I implement
 Classifier & Training Score & Prediction Score\\[0.5ex]
 \hline % inserts single-line
 
-SVC     & 54.63\% & 54.12\% \\
-DecisionTree       & 51.15\% & 59.82\%\\
-RandomForestClassifier   & 46.79\% & 59.78\%\\
-XGBClassifier            & 57.61\% & 68.37\%\\
+SVC     & 55.16\% & 54.12\% \\
+DecisionTree       & 49.26\% & 60.79\%\\
+RandomForestClassifier   & 50.64\% & 54.64\%\\
+XGBClassifier            & 61.73\% & 68.37\%\\
 
 \hline% inserts single-line
 \end{tabular}
