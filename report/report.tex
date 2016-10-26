@@ -228,10 +228,10 @@ I am going to tune my model based on some heuristics about the kinds of value ra
 \begin{itemize}
 \item Parameters for Tree Booster
     \begin{itemize}
-        \item \texttt{max\_depth}
+        \item \texttt{colsample\_bytree}
         \begin{itemize}
-            \item Maximum depth of tree
-            \item Range [1, $\infty$], default 6, tuned on $[4, 6, 8, 10]$
+            \item subsample ratio of columns when constructing each tree
+            \item Range (0, 1], default 6, tuned on $[0.4, 0.6, 0.8, 1.0]$
         \end{itemize}
         \item \texttt{n\_estimators}
         \begin{itemize}
@@ -253,9 +253,9 @@ I am going to tune my model based on some heuristics about the kinds of value ra
 I will implement the tuning using sklearn's \texttt{GridSearch} in conjunction with a \{k=50 fold\} \texttt{StratifiedShuffleSplit} function. 
 
 \section*{Results of tuning}
-Once I performed the search through the hyper-parameter space to find the combination of hyper-parameters that maximized the performance of the selected classifier, I was able to \textbf{improve} the previous $F_1$ score by \textbf{6.63\%}, to achieve a prediction score of 75\%.
+Once I performed the search through the hyper-parameter space to find the combination of hyper-parameters that maximized the performance of the selected classifier, I was able to \textbf{improve} the previous $F_1$ score by \textbf{2.85\%}, to achieve a prediction score of 71.22\%.
 
-From figures \ref{cfmatrix_base} and \ref{cfmatrix_tuned}, one can see that the \textbf{false negative} count for the female class has gone from 43 down to 32. This decision cost us a very small increase in the \textbf{false positive} count of the male class from 19 to 20. This is not too bad, so I will stick with this improved model.
+From figures \ref{cfmatrix_base} and \ref{cfmatrix_tuned}, one can see that the \textbf{false negative} count for the female class has gone from 43 down to 37. This decision cost us a very small increase in the \textbf{false positive} count of the male class from 19 to 22. This is not too bad, so I will stick with this improved model.
 
 \begin{figure}[!hbtp]
 \centering
@@ -269,23 +269,15 @@ From figures \ref{cfmatrix_base} and \ref{cfmatrix_tuned}, one can see that the 
     \caption{\textbf{Confusion Matrix}}
 \end{figure}
 
-
-Looking at figure \ref{tuned_plot_tree}, the tuned model has a very complex tree that goes down ten levels, for each of its estimators. This model as segmented the data into 47 distinct types; you can see this by counting the number of leaf nodes.
-\begin{figure}[!hbtp]
-\centering
-    \includegraphics[width=1.4\textwidth]{figures/Tuned_model_graph}
-    \caption{\textbf{Tuned XgBoost estimator decision tree. }\textit{}}\label{tuned_plot_tree}
-\end{figure}
-
 Here is the final model for classifying gender in introductory CS. 
 \begin{verbatim}
-Best accuracy obtained: 0.621055664439
+Best accuracy obtained: 71.22\%
 Parameters:
-    n_estimators: 200
+    n_estimators: 700
     subsample: 0.7
-    learning_rate: 0.2222
+    learning_rate:  0.4444
     colsample_bytree: 0.6
-    max_depth: 10
+    max_depth: 4
 
 \end{verbatim}
 
@@ -303,11 +295,12 @@ From figures \ref{firstXGraph} and \ref{secondXGraph}, I see that
     \subfloat[First tree in the ensemble]{%
     \includegraphics[width=0.5\textwidth]{figures/firstXGraph}
     \label{firstXGraph}}
+
     \subfloat[Second tree in the ensemble]{%
     \includegraphics[width=0.5\textwidth]{figures/secondXGraph}
     \label{secondXGraph}}
 
-    \caption{\textbf{XgBoost estimator regression trees}}
+    \caption{\textbf{XgBoost base model decision trees}}
 \end{figure}
 
 
@@ -340,6 +333,24 @@ Rank & Coded item & Description\\[0.5ex]
 \end{tabular}
 \label{tableFeatureImportance}{}
 \end{table}
+
+\subsection*{Optimized Trees}
+I did not want the model to get overly complex because I wanted to make use of the tree as a set of rules; as such, I fixed the tree depth to 4 levels. Looking at figure \ref{first_tuned_tree}, you can see that this model as segmented the data into 14 distinct types because there are 14 nodes on the tree.
+\begin{figure}[!hbtp]
+\centering
+    \subfloat[First tree in the ensemble]{%
+    \includegraphics[width=1\textwidth]{figures/first_tuned_model_graph}
+    \label{first_tuned_tree}}
+
+    \qquad
+
+    \subfloat[Second tree in the ensemble]{%
+    \includegraphics[width=1\textwidth]{figures/second_tuned_model_graph}
+    \label{secondtuned_tree}}
+
+    \caption{\textbf{Tuned XgBoost estimator decision tree.}}
+\end{figure}
+
 
 Information gain, lets us know how valuable a feature is in discriminating the dataset. That is, if we know the information gain of a feature, we can know how much it would contribute to the knowledge of the value of the target label. 
 
