@@ -31,6 +31,7 @@ Usually, I would explore the dataset to ensure its integrity and understand the 
 If possible, engineer features that might provide greater discrimination.
 \item With the understanding that this a ``classification'' task, explore a couple of classifiers that might be well suited for the problem at hand.
 \item Select appropriate classifier based on evaluation metric and tune it for optimality.
+\item Extract top features responsible for discriminating the data.
 \end{enumerate}
 
 \section*{Metrics}
@@ -38,7 +39,7 @@ If possible, engineer features that might provide greater discrimination.
 
 To evaluate the performance of the classifiers that I will use in solving my research problem, I will consider two separate evaluation metrics, the $F_1$ score of my classifier and the result of its confusion matrix. My reason for using these two evaluation metrics in tandem is that the student dataset has unbalanced classes as can be seen in figure \ref{targetClass}. This skew will cause accuracy to be a misleading metric.
 
-Beyond the $F_1$ score, i.e., the weighted average of precision and recall, the confusion matrix will let me see which model most accurately \emph{identifies female} students. This will be the \textbf{most important} evaluation metric because that is the segment of the student population I am most interested in discovering what determines their experience.
+Beyond the $F_1$ score, i.e., the weighted average of precision and recall, the confusion matrix will let me see which model most accurately \emph{identifies female} students. This will be the \textbf{most important} evaluation metric because that is the segment of the student population I am most interested in discovering what determines their experience. To do this, I will select the classifier that maximizes \textbf{true positive} rates of female prediction while simultaneously minimizing \textbf{false positive} rates. In turn, I will then extract the top features in discriminating the data. 
 
 \begin{figure}[!hbtp]
 \centering
@@ -192,20 +193,20 @@ From running these baseline classifiers, I selected the xgboost classifier becau
 \begin{figure}[!hbtp]
 \centering
     \subfloat[Random Forest]{%
-    \includegraphics[width=0.5\textwidth]{figures/RandomForest}
+    \includegraphics[width=0.65\textwidth]{figures/RandomForest}
     \label{RFCM}}
     \subfloat[Decision Tree]{%
-    \includegraphics[width=0.5\textwidth]{figures/DecisionTree}
+    \includegraphics[width=0.65\textwidth]{figures/DecisionTree}
     \label{DTCM}}
 
     \quad
 
 
     \subfloat[XgBoost]{%
-    \includegraphics[width=0.5\textwidth]{figures/XGBoost}
+    \includegraphics[width=0.65\textwidth]{figures/XGBoost}
     \label{XGBCM}}
     \subfloat[SVC]{%
-    \includegraphics[width=0.5\textwidth]{figures/SVC}
+    \includegraphics[width=0.65\textwidth]{figures/SVC}
     \label{SVCCM}}
 
     \caption{\textbf{Confusion Matrices of Baseline Classifiers}}
@@ -258,10 +259,10 @@ From figures \ref{cfmatrix_base} and \ref{cfmatrix_tuned}, one can see that the 
 \begin{figure}[!hbtp]
 \centering
     \subfloat[Base Model]{%
-    \includegraphics[width=0.6\textwidth]{figures/XGBoost}
+    \includegraphics[width=0.65\textwidth]{figures/XGBoost}
     \label{cfmatrix_base}}
     \subfloat[Tuned Model]{%
-    \includegraphics[width=0.6\textwidth]{figures/tuned_model_CM}
+    \includegraphics[width=0.65\textwidth]{figures/tuned_model_CM}
     \label{cfmatrix_tuned}}
 
     \caption{\textbf{Confusion Matrix}}

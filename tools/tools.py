@@ -203,7 +203,7 @@ def show_confusion_matrix(C, filename, class_labels=['0','1']):
     NN = tn+fp # Num negative examples
     N  = NP+NN
 
-    fig = plt.figure(figsize=(5,5), dpi=300)
+    fig = plt.figure(figsize=(7.5,5), dpi=300)
     ax  = fig.add_subplot(111)
     ax.imshow(C, interpolation='nearest', cmap=plt.cm.gist_heat)
 
