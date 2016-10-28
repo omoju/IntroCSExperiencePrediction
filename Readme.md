@@ -14,8 +14,8 @@ I broke down the problem into multiple well-defined components, each one solving
 ## Analysis
 An analysis of this project can be found here [report/genderedCSExperience.pdf](report/genderedCSExperience.pdf)   
 The technical implementation can be found in:
-- [Part One - summarizing data](genderedCSExperience.ipynb)
-- [Part Two - ranking features](featureImportance.ipynb)
+- [Part One - summarizing data](part1_genderedCSExperience.ipynb)
+- [Part Two - ranking features](part2_featureImportance.ipynb)
 
 
 
