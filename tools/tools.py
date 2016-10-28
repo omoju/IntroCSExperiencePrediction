@@ -210,7 +210,8 @@ def show_confusion_matrix(C, filename, class_labels=['0','1']):
     # Draw the grid boxes
     ax.set_xlim(-0.5,0.5)
     ax.set_ylim(0.5,-0.5)
-
+    
+    
     # Set xlabels
     ax.set_xlabel('Predicted Label', fontsize=16)
     ax.set_xticks([0,1,1.5])
@@ -253,6 +254,17 @@ def show_confusion_matrix(C, filename, class_labels=['0','1']):
             ha='center',
             bbox=dict(fc='w',boxstyle='round,pad=1'))
 
+
+    # Fill in secondary metrics: accuracy, true pos rate, etc...
+    ax.text(2,0,
+            'False Pos Rate: %.2f%%'%((fp / (fp+tn+0.)) * 100),
+            va='center',
+            ha='center')
+
+    ax.text(2,1,
+            'True Pos Rate: %.2f%%'%((tp / (tp+fn+0.)) * 100),
+            va='center',
+            ha='center')
 
 
     plt.tight_layout()
