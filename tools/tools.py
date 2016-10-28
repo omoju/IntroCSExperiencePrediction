@@ -180,7 +180,7 @@ def evaluate_chi(y, item):
     return chi_squared_score, p_value, dof, expected
 
 
-def show_confusion_matrix(C, filename, class_labels=['0','1']):
+def show_confusion_matrix(C, model_name, filename, class_labels=['0','1']):
     """
     C: ndarray, shape (2,2) as given by scikit-learn confusion_matrix function
     class_labels: list of strings, default simply labels 0 and 1.
@@ -212,8 +212,9 @@ def show_confusion_matrix(C, filename, class_labels=['0','1']):
     ax.set_ylim(0.5,-0.5)
     
     
+    
     # Set xlabels
-    ax.set_xlabel('Predicted Label', fontsize=16)
+    ax.set_xlabel(model_name+'\nPredicted Label', fontsize=16)
     ax.set_xticks([0,1,1.5])
     ax.set_xticklabels(class_labels + [''])
     ax.xaxis.set_label_position('top')
