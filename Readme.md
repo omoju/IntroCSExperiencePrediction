@@ -6,7 +6,7 @@ This project adds a predictive model for understanding the dynamics of gender in
 
 I did a mixed-methods formative research that answers the question, “What are the socio-curricular factors that lead historically underrepresented students to choose CS?”
 
-I did the following data science projects to answer the research question:
+I broke down the problem into multiple well-defined components, each one solving a specific aspect of the problem. The projects generated can be found in the following repositories:
 - [investigatingWhyURMsChooseCS](https://github.com/omoju/investigatingWhyURMsChooseCS)
 - [analyzingInterviewText](https://github.com/omoju/AnalyzingInterviewText)
 - [hiphopathy](https://github.com/omoju/hiphopathy)
