@@ -1,19 +1,15 @@
-# Identify Factors that Predict Intro CS Experience Based on Gender. 
+# Gender Analytics
+## Identify Factors that Predict Intro CS Experience Based on Gender. 
 ### A Supervised Learning Project.   
 
-This work builds on previous research done in fulfillment of a Computer Science Education Ph.D., HipHopathy, A Socio-Curricular Study of Introductory Computer Science. 
+This project adds a predictive model for understanding the dynamics of gender in intro CS at Berkeley for years 2014 through 2015. This work builds on previous research done in fulfillment of a Computer Science Education Ph.D., *HipHopathy, A Socio-Curricular Study of Introductory Computer Science*. 
 
-A mixed-methods formative research was conducted that sought to answer the question, “What are the socio-curricular factors that lead historically underrepresented students to choose CS?”
+I did a mixed-methods formative research that answers the question, “What are the socio-curricular factors that lead historically underrepresented students to choose CS?”
 
-In answering the central research questions concerning this study, an in-depth examination of the UC Berkeley course titled *The Beauty and Joy of Computing* was presented benchmarked against the UC Berkeley course titled *The Structure and Interpretation of Computer Programs.* 
-
-In the course of investigating these questions, the following data science projects were carried out:
+I did the following data science projects to answer the research question:
 - [investigatingWhyURMsChooseCS](https://github.com/omoju/investigatingWhyURMsChooseCS)
 - [analyzingInterviewText](https://github.com/omoju/AnalyzingInterviewText)
 - [hiphopathy](https://github.com/omoju/hiphopathy)
-
-In addition to the previous work done, this project adds a predictive model for understanding the dynamics of gender in intro CS at Berkeley for years 2014 through 2015.
-
 
 ## Analysis
 An analysis of this project can be found here [report/genderedCSExperience.pdf](report/genderedCSExperience.pdf)   
@@ -25,7 +21,7 @@ The technical implementation can be found in:
 
 ## Data
 
-The dataset that is used in this project is unfortunately not available for mass consumption, as it contains sensitive, *personally identifiable* student data. This dataset was generated through the use of a survey instrument which contains the following attributes for each data point based on a Likert scale of 1 to 5, 1 *strongly disagree* and 5 corresponding to *strongly agree*. Some items have *yes* and *no* answers.
+The dataset used in this project not available for mass consumption, as it contains sensitive, *personally identifiable* student data. To generate this dataset, I created a survey that includes the following attributes for each data point based on a Likert scale of 1 to 5, 1 for *strongly disagree* and 5 corresponding to *strongly agree*. Some items have *yes* and *no* answers.
 
 #### Self-reported attitudes about CS
 - atcs_1 I like to use computer science to solve problems.
@@ -87,4 +83,4 @@ The dataset that is used in this project is unfortunately not available for mass
 
 ## License
 
-The contents of this repository are covered under the [GNU GENERAL PUBLIC LICENSE](License.md).
+The contents of this repository are subjected to the [GNU GENERAL PUBLIC LICENSE](License.md).
