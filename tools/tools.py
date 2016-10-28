@@ -257,12 +257,12 @@ def show_confusion_matrix(C, model_name, filename, class_labels=['0','1']):
 
 
     # Fill in secondary metrics: accuracy, true pos rate, etc...
-    ax.text(2,0,
+    ax.text(2.1,0,
             'False Pos Rate: %.2f%%'%((fp / (fp+tn+0.)) * 100),
             va='center',
             ha='center')
 
-    ax.text(2,1,
+    ax.text(2.1,1,
             'True Pos Rate: %.2f%%'%((tp / (tp+fn+0.)) * 100),
             va='center',
             ha='center')
@@ -270,7 +270,7 @@ def show_confusion_matrix(C, model_name, filename, class_labels=['0','1']):
 
     plt.tight_layout()
     plt.savefig(filename, format='png', dpi=100)
-    plt.show()
+    plt.close()
    
     
     
