@@ -189,7 +189,10 @@ XGBClassifier            & 61.73\% & 68.37\%\\
 \label{tableBenchMarkScores}{}
 \end{table}
 
-From running these baseline classifiers, I selected the xgboost classifier because it had the highest score. In addition, when I looked at the result of the confusion matrix, I decided to use the lowest \textbf{false negative} count for the female class as my evaluation metric. From figures \ref{DTCM} and \ref{XGBCM}, I can see that the decision tree and xgboost learners are tied for having the lowest score of false negatives for the female class.
+From running these baseline classifiers, I selected the xgboost classifier, \ref{XGBCM}, as the right learner for this problem based on my evaluation criteria.
+
+Its interesting to note that the Decision Tree classifier, \ref{DTCM}, had the highest true positive rate at 62.73\%, however, its false positive rate was a staggering 43.64\%! This means that it cannot find a meaningful sets of conditions for separating males from females in the dataset. Where as, XGBoost does satisfactory in both finding what the conditions that both separate the classes as well as identify the classes.
+
 \begin{figure}[!hbtp]
 \centering
     \subfloat[Random Forest]{%
