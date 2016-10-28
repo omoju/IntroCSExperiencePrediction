@@ -36,11 +36,9 @@ If possible, engineer features that might provide greater discrimination.
 \section*{Metrics}
 
 
-Predicting gender in intro CS is a supervised learning problem. To determine the performance of the model, I will be using the $F_1$ score, i.e., the weighted average of precision and recall as my metric of choice. 
+To evaluate the performance of the classifiers that I will use in solving my research problem, I will consider two separate evaluation metrics, the $F_1$ score of my classifier and the result of its confusion matrix. My reason for using these two evaluation metrics in tandem is that the student dataset has unbalanced classes as can be seen in figure \ref{targetClass}. This skew will cause accuracy to be a misleading metric.
 
-I am choosing to use the $F_1$ score as my metric of evaluation over the accuracy score because my particular dataset has more male students in it than female students. You can see this imbalance in figure \ref{targetClass}. If I used accuracy, because this imbalance is there, my results could be misleading. 
-
-Beyond precision and recall, I will also lean on the result of the confusion matrix for each model. This matrix will let me see which model most accurately \emph{identifies female} students. This will be the \textbf{most important} evaluation metric because that is the segment of the student population I am most interested in discovering what determines their experience.
+Beyond the $F_1$ score, i.e., the weighted average of precision and recall, the confusion matrix will let me see which model most accurately \emph{identifies female} students. This will be the \textbf{most important} evaluation metric because that is the segment of the student population I am most interested in discovering what determines their experience.
 
 \begin{figure}[!hbtp]
 \centering
