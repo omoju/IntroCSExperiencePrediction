@@ -284,12 +284,12 @@ def show_confusion_matrix(C, model_name, filename, class_labels=['0','1']):
 
     # Fill in secondary metrics: accuracy, true pos rate, etc...
     ax.text(2.1,0,
-            'False Pos Rate: %.2f%%'%((fp / (fp+tn+0.)) * 100),
+            'False Pos Rate: %.2f'%(fp / (fp+tn+0.)),
             va='center',
             ha='center')
 
     ax.text(2.1,1,
-            'True Pos Rate: %.2f%%'%((tp / (tp+fn+0.)) * 100),
+            'True Pos Rate: %.2f'%(tp / (tp+fn+0.)),
             va='center',
             ha='center')
 
