@@ -179,6 +179,32 @@ def evaluate_chi(y, item):
     
     return chi_squared_score, p_value, dof, expected
 
+def expected_rates(C):
+    """
+    C: ndarray, shape (2,2) as given by scikit-learn confusion_matrix function
+    
+
+    Returns false positive and true positive rates.
+    
+    Modified Function courtesy Matt Hancock
+    http://notmatthancock.github.io/2015/10/28/confusion-matrix.html
+    """
+ 
+    
+    assert C.shape == (2,2), "Confusion matrix should be from binary classification only."
+    
+    # true negative, false positive, etc...
+    tn = C[0,0]; fp = C[0,1]; fn = C[1,0]; tp = C[1,1];
+
+    NP = fn+tp # Num positive examples
+    NN = tn+fp # Num negative examples
+    N  = NP+NN
+
+    
+    return dict(fpr=fp / (fp+tn+0.), 
+                tpr=tp / (tp+fn+0.))
+    
+
 
 def show_confusion_matrix(C, model_name, filename, class_labels=['0','1']):
     """
@@ -271,7 +297,6 @@ def show_confusion_matrix(C, model_name, filename, class_labels=['0','1']):
     plt.tight_layout()
     plt.savefig(filename, format='png', dpi=100)
     plt.close()
-   
     
     
 def create_feature_map(features, filename):
