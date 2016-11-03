@@ -121,8 +121,6 @@ def dataDescr():
     print "- prcs_4 Did you have a close family member who is a Computer Scientist or is affiliated with computing industry?"
     print "- prcs_5 Did your high school offer AP CS?"
 
-    print "\nMissing Attribute Values: None"
-
     print "\nCreator: Omoju Miller"
 
 
@@ -161,6 +159,21 @@ def load_model(model_filename):
     except:
         print "Could not load model"
     return clf
+
+def find_missing_values(df):
+    """
+    df: pandas dataframe
+    
+    Prints feature name and percentage of value missing
+    """
+    count_nan = (len(df) - df.count()) / len(df)
+    percentage_nan = {}
+
+    for item in range (0, len(count_nan)):
+        if count_nan[item] > 0:
+            print "{:30}{:4.4f}".format(count_nan.index[item], count_nan[item])
+            percentage_nan[count_nan.index[item]] = count_nan[item]
+        
 
 def evaluate_chi(y, item):
     """
