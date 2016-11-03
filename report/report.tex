@@ -78,7 +78,9 @@ In addition, the survey also collected data around student background:
 
 
 
-Majority of the questionnaire uses a 5-point Likert scale (where 1 = Strongly Disagree, 3 = Neutral and 5 = Strongly Agree). A code book was created to facilitate ease of analysis and interpretability of results. The dataset consists of 882 instances with no missing data. Further, there are 494 males and 388 female samples in the dataset. 
+Majority of the questionnaire uses a 5-point Likert scale (where 1 = Strongly Disagree, 3 = Neutral and 5 = Strongly Agree). A code book was created to facilitate ease of analysis and interpretability of results. 
+
+The dataset consists of 45 feature columns with 882 instances. Further, the dataset breakdowns into 494 male datapoints versus 388 female datapoints in the dataset. 
 
 
 %----------------------------------------------------------------------------------------
@@ -86,9 +88,17 @@ Majority of the questionnaire uses a 5-point Likert scale (where 1 = Strongly Di
 %----------------------------------------------------------------------------------------
 
 
+
+\section*{Missing Values}
+The dataset with 45 features had two features with missing data.
+\begin {itemize}    
+\item priorcs10:                    43.88\% missing
+\item reason\_class:                 0.68\% missing
+\end{itemize} 
+
 \section*{Data Preprocessing}
 
-To prepare the data for classification, all features need to be transformed into numeric data. This dataset has several non-numeric columns that need converting. Many of them take on \texttt{yes} and \texttt{no} values, e.g. \texttt{prcs\_2}. These can be reasonably convert these into `1'/`0' (binary) values. For the columns whose values are `Nan', these will be converted to `-1'. Further, whitespaces will be removed from column names with the understanding that the tree plotting algorithm for Xgboost will fail if column names have spaces. 
+To prepare the data for classification, all features need to be transformed into numeric data. This dataset has several non-numeric columns that need converting. Many of them take on \texttt{yes} and \texttt{no} values, e.g. \texttt{prcs\_2}. These can be reasonably convert these into `1'/`0' (binary) values. For the columns whose values are `Nan', these will be converted to the mean of the column. Further, whitespaces will be removed from column names with the understanding that the tree plotting algorithm for Xgboost will fail if column names have spaces. 
 
 The features were scaled using a minimax scaler to get better output for our SVM. This yielded the following values:
 \begin {itemize}    
