@@ -280,7 +280,7 @@ I am going to tune my model based on some heuristics about the kinds of value ra
         \item \texttt{colsample\_bytree}
         \begin{itemize}
             \item subsample ratio of columns when constructing each tree
-            \item Range (0, 1], default 6, tuned on $[0.4, 0.6, 0.8, 1.0]$
+            \item Range (0, 1], default 0.6, tuned on $[0.4, 0.6, 0.8, 1.0]$
         \end{itemize}
         \item \texttt{n\_estimators}
         \begin{itemize}
@@ -295,16 +295,16 @@ I am going to tune my model based on some heuristics about the kinds of value ra
         \item \texttt{learning\_rate}
         \begin{itemize}
             \item Scale the contribution of each tree by learning rate
-            \item Range $[0, 1]$, tuned on $[0.2222, 0.4444, 0.6666, 0.8888]$
+            \item Range $[0, 1]$, tuned on $[0.01, 0.007, 0.005, 0.004, 0.003, 0.003, 0.003, 0.002, 0.002]$
         \end{itemize}
     \end{itemize}
 \end{itemize}
-I will implement the tuning using sklearn's \texttt{GridSearch} in conjunction with a \{k=50 fold\} \texttt{StratifiedShuffleSplit} function. 
+I will implement the tuning using sklearn's \texttt{GridSearch} in conjunction with a \{k=10 fold\} \texttt{StratifiedShuffleSplit} function. 
 
 \section*{Results of tuning}
-Once I performed the search through the hyper-parameter space to find the combination of hyper-parameters that maximized the performance of the selected classifier, I was able to \textbf{improve} the previous $F_1$ score by \textbf{2.85\%}, to achieve a prediction score of 71.22\%.
+Once I performed the search through the hyper-parameter space to find the combination of hyper-parameters that maximized the performance of the selected classifier, I was able to \textbf{improve} the previous $F_1$ score by \textbf{2.82\%}, to achieve a prediction score of 73.17\%.
 
-From figures \ref{cfmatrix_base} and \ref{cfmatrix_tuned}, one can see that the \textbf{false negative} count for the female class has gone from 43 down to 37. This decision cost us a very small increase in the \textbf{false positive} count of the male class from 19 to 22. This is not too bad, so I will stick with this improved model.
+From figures \ref{cfmatrix_base} and \ref{cfmatrix_tuned}, one can see that the \textbf{false negative} count for the female class has gone from 40 down to 35. This decision cost us a very small increase in the \textbf{false positive} count of the male class from 19 to 20. This is not too bad, so I will stick with this improved model.
 
 \begin{figure}[!hbtp]
 \centering
@@ -320,13 +320,13 @@ From figures \ref{cfmatrix_base} and \ref{cfmatrix_tuned}, one can see that the 
 
 Here is the final model for classifying gender in introductory CS. 
 \begin{verbatim}
-Best accuracy obtained: 71.22%
+Best accuracy obtained: 73.17%
 Parameters:
-    n_estimators: 700
+    n_estimators: 900
     subsample: 0.7
-    learning_rate:  0.4444
-    colsample_bytree: 0.6
-    max_depth: 4
+    learning_rate:  0.005
+    colsample_bytree: 1.0
+    max_depth: 6
 
 \end{verbatim}
 
