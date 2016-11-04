@@ -36,10 +36,39 @@ If possible, engineer features that might provide greater discrimination.
 
 \section*{Metrics}
 
+To evaluate the performance of the classifiers I consider two separate evaluation metrics, the $F_1$ score of the classifiers and the \textbf{expected value}, \ref{expectedValue}, result. The equation for the expected value is calculated as follows:
+$$ p(\mathbf{p}).[p(\mathbf{Y}|\mathbf{p}). b(\mathbf{Y},\mathbf{p}) + p(\mathbf{N}|\mathbf{p}). b(\mathbf{N},\mathbf{p})] + p(\mathbf{n}).[p(\mathbf{N}|\mathbf{n}). b(\mathbf{N},\mathbf{n}) + 
+p(\mathbf{Y}|\mathbf{n}). b(\mathbf{Y},\mathbf{n})]$$
+In short, it is the expected rates multiplied by the cost-benefit of each entry in the confusion matrix, weighted by the class priors. I invented a cost and benefits value associated with entry of the confusion matrix based on domain knowledge. My goal is to reward correct female class classification while penalizing false classifications. My choices for these values can be see in table \ref{tableCostBenefit}. 
 
-To evaluate the performance of the classifiers that I will use in solving my research problem, I will consider two separate evaluation metrics, the $F_1$ score of my classifier and the result of its confusion matrix. My reason for using these two evaluation metrics in tandem is that the student dataset has unbalanced classes as can be seen in figure \ref{targetClass}. This skew will cause accuracy to be a misleading metric.
+\setlength{\extrarowheight}{1.5pt}
+\begin{table}[!htbp]
+\caption{Cost/Benefits} %title of the table
+\centering % centering table
+\begin{tabular}{|l|l|} % creating four columns 
+\hline % inserts single-line
 
-Beyond the $F_1$ score, i.e., the weighted average of precision and recall, the confusion matrix will let me see which model most accurately \emph{identifies female} students. This will be the \textbf{most important} evaluation metric because that is the segment of the student population I am most interested in discovering what determines their experience. To do this, I will select the classifier that maximizes \textbf{true positive} rates of female prediction while simultaneously minimizing \textbf{false positive} rates. In turn, I will then extract the top features in discriminating the data. 
+
+\multicolumn{2}{|c|}{}\\
+\multicolumn{2}{|c|}{Cost/Benfits Table}\\[5pt]
+\hline
+Item & Value\\[0.5ex]
+\hline % inserts single-line
+
+Benefit of \textit{correctly identifying} a \textbf{female} student  & 5  \\
+Benefit of \textit{correctly identifying} a \textbf{male} student   & 1  \\
+Cost of \textit{missclassifying} a \textbf{female} student  & -2  \\
+Cost of \textit{missclassifying} a \textbf{male} student  & 1  \\
+
+\hline% inserts single-line
+\end{tabular}
+\label{tableCostBenefit}{}
+\end{table}
+
+I am using these two evaluation metrics in tandem because simple accuracy does not distinguish between \textbf{false positive} and \textbf{false negative} rates. Furthermore, the student dataset has unbalanced classes, as can be seen in figure \ref{targetClass}, which will also cause the accuracy metric to breakdown as the classes become more skewed.
+
+
+
 
 \begin{figure}[!hbtp]
 \centering
@@ -49,6 +78,16 @@ Beyond the $F_1$ score, i.e., the weighted average of precision and recall, the 
     \includegraphics[width=1\textwidth]{figures/targetClass}
     \label{targetClass}
 \end{figure}
+
+\begin{figure}[!hbtp]
+\centering
+
+    \caption{\textbf{Expected Value Equation. }\textit{Expected rates multiplied by the cost-benefit weighted by the class priors.}}
+
+    \includegraphics[width=1\textwidth]{figures/expectedValueCalculation.png}
+    \label{expectedValue}
+\end{figure}
+
 
 %----------------------------------------------------------------------------------------
 %  CHAPTER 
