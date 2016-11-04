@@ -54,8 +54,8 @@ Item & Value\\[0.5ex]
 
 Benefit of \textit{correctly identifying} a \textbf{female} student  & 5  \\
 Benefit of \textit{correctly identifying} a \textbf{male} student   & 1  \\
-Cost of \textit{missclassifying} a \textbf{female} student  & -2  \\
-Cost of \textit{missclassifying} a \textbf{male} student  & 1  \\
+Cost of \textit{misclassifying} a \textbf{female} student  & -2  \\
+Cost of \textit{misclassifying} a \textbf{male} student  & 1  \\
 
 \hline% inserts single-line
 \end{tabular}
@@ -238,7 +238,7 @@ XGBClassifier            & 59.69\% & 70.35\% & 3.11\%\\
 
 From running these baseline classifiers, I selected the xgboost classifier, \ref{XGBCM}, as the right learner for this problem because it had the highest expected value score.
 
-Its interesting to note that the Decision Tree classifier, \ref{DTCM}, had the highest true positive rate at 0.63\%, however, its false positive rate was a staggering 0.38\%! This means that it cannot find a meaningful sets of conditions for separating males from females in the dataset. The Support Vector Machine had the lowest false positive rate but did not beat the majority classifer because its true positive rate was abysmal. Where as, XGBoost does satisfactory on both fronts.
+Its interesting to note that the Decision Tree classifier, \ref{DTCM}, had the highest true positive rate at 0.63, however, its false positive rate was a staggering 0.38! This means that it cannot find a meaningful sets of conditions for separating males from females in the dataset. The Support Vector Machine had the lowest false positive rate but did not beat the majority classifier because its true positive rate was abysmal. Where as, XGBoost does satisfactory on both fronts.
 
 \begin{figure}[!hbtp]
 \centering
