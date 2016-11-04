@@ -48,9 +48,6 @@ In short, it is the expected rates multiplied by the cost-benefit of each entry 
 \begin{tabular}{|l|l|} % creating four columns 
 \hline % inserts single-line
 
-
-\multicolumn{2}{|c|}{}\\
-\multicolumn{2}{|c|}{Cost/Benfits Table}\\[5pt]
 \hline
 Item & Value\\[0.5ex]
 \hline % inserts single-line
@@ -218,30 +215,30 @@ I implemented the four learning algorithms. For each of the learners I implement
 \begin{table}[!htbp]
 \caption{Scores} %title of the table
 \centering % centering table
-\begin{tabular}{|l|l|l|} % creating four columns 
+\begin{tabular}{|l|l|l|r|} % creating four columns 
 \hline % inserts single-line
 
 
-\multicolumn{3}{|c|}{}\\
-\multicolumn{3}{|c|}{Result of training the baseline classifiers}\\[5pt]
+\multicolumn{4}{|c|}{}\\
+\multicolumn{4}{|c|}{Result of training the baseline classifiers}\\[5pt]
 \hline
-Classifier & Training Score & Prediction Score\\[0.5ex]
+Classifier & Training Score & Prediction Score & Expected Value\\[0.5ex]
 \hline % inserts single-line
 
-Majority & & 58.01\% \\
-SVC     & 55.16\% & 54.12\% \\
-DecisionTree       & 49.26\% & 60.79\%\\
-RandomForestClassifier   & 50.64\% & 54.64\%\\
-XGBClassifier            & 61.73\% & 68.37\%\\
+Majority & - & 58.01\% & 0.0 \\
+SVC     & 55.39\% & 53.57\% & 1.63\% \\
+DecisionTree       & 51.08\% & 62.44\% & 2.63\%\\
+RandomForestClassifier   & 54.93\% & 55.91\% & 1.87\%\\
+XGBClassifier            & 59.69\% & 70.35\% & 3.11\%\\
 
 \hline% inserts single-line
 \end{tabular}
 \label{tableBenchMarkScores}{}
 \end{table}
 
-From running these baseline classifiers, I selected the xgboost classifier, \ref{XGBCM}, as the right learner for this problem based on my evaluation criteria.
+From running these baseline classifiers, I selected the xgboost classifier, \ref{XGBCM}, as the right learner for this problem because it had the highest expected value score.
 
-Its interesting to note that the Decision Tree classifier, \ref{DTCM}, had the highest true positive rate at 62.73\%, however, its false positive rate was a staggering 43.64\%! This means that it cannot find a meaningful sets of conditions for separating males from females in the dataset. Where as, XGBoost does satisfactory in both finding what the conditions that both separate the classes as well as identify the classes.
+Its interesting to note that the Decision Tree classifier, \ref{DTCM}, had the highest true positive rate at 0.63\%, however, its false positive rate was a staggering 0.38\%! This means that it cannot find a meaningful sets of conditions for separating males from females in the dataset. The Support Vector Machine had the lowest false positive rate but did not beat the majority classifer because its true positive rate was abysmal. Where as, XGBoost does satisfactory on both fronts.
 
 \begin{figure}[!hbtp]
 \centering
