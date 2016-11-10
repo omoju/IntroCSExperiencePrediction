@@ -1,4 +1,4 @@
-# Gender Analytics
+# Cultural Analytics
 ## Identify Factors that Predict Intro CS Experience Based on Gender. 
 ### A Supervised Learning Project.   
 
