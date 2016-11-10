@@ -12,9 +12,9 @@ I broke down the problem into multiple well-defined components, each one solving
 - [hiphopathy](https://github.com/omoju/hiphopathy)
 
 ## Analysis
-An analysis of this project can be found here [report/genderedCSExperience.pdf](report/genderedCSExperience.pdf)   
+An analysis of this project can be found here [report/CSExperience.pdf](report/CSExperience.pdf)   
 The technical implementation can be found in:
-- [Part One - summarizing data](part1_genderedCSExperience.ipynb)
+- [Part One - summarizing data](part1_CSExperience.ipynb)
 - [Part Two - ranking features](part2_featureImportance.ipynb)
 
 
