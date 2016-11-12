@@ -18,7 +18,7 @@ I think of this problem as a big-data opportunity where we can kill two birds wi
 
 As Internet adoption increases, so too will be the opportunity to leverage online education to close the gap between the genders, particularly in emerging countries. A solid understanding of the factors that determine women's participation in computer science can help guide how we design these future learning environments.  This project is the start of my journey into understanding those factors.
 
-As part of my doctoral study, I decided to investigate the socio-curricular factors that affect the decision to participate in introductory computer science through a data-driven lens. To do this, I designed a research study examining the role of computer science self-identity centered around the experiences of undergraduates in two introductory computer science classes at UC Berkeley. Once that study was completed, I didn't stop, I decided to ask new questions of the data. Specifically \textit{what were the leading factors that made female students choose intro CS}?  With that, the project I titled CSExperience was born. 
+As part of my doctoral study, I decided to investigate the socio-curricular factors that affect the decision to participate in introductory computer science through a data-driven lens. To do this, I designed a research study examining the role of computer science self-identity centered around the experiences of undergraduates in two introductory computer science classes at UC Berkeley. Once that study was completed, I didn't stop; I decided to ask new questions of the data. Specifically \textit{what were the leading factors that made female students choose intro CS}?
 
 
 \section*{Problem Statement}
@@ -39,8 +39,14 @@ If possible, engineer features that might provide greater discrimination.
 \section*{Metrics}
 
 To evaluate the performance of the classifiers I consider two separate evaluation metrics, the $F_1$ score of the classifiers and the \textbf{expected value}, \ref{expectedValue}, result. The equation for the expected value is calculated as follows:
-$$ p(\mathbf{p}).[p(\mathbf{Y}|\mathbf{p}). b(\mathbf{Y},\mathbf{p}) + p(\mathbf{N}|\mathbf{p}). b(\mathbf{N},\mathbf{p})] + p(\mathbf{n}).[p(\mathbf{N}|\mathbf{n}). b(\mathbf{N},\mathbf{n}) + 
-p(\mathbf{Y}|\mathbf{n}). b(\mathbf{Y},\mathbf{n})]$$
+\begin{equation}
+\begin{aligned}
+\mbox{Expected Value} = p(\mathbf{p}).[p(\mathbf{Y}|\mathbf{p}). b(\mathbf{Y},\mathbf{p}) + p(\mathbf{N}|\mathbf{p}). b(\mathbf{N},\mathbf{p})] \\
++ p(\mathbf{n}).[p(\mathbf{N}|\mathbf{n}). b(\mathbf{N},\mathbf{n}) + 
+p(\mathbf{Y}|\mathbf{n}). b(\mathbf{Y},\mathbf{n})]
+\end{aligned}
+\end{equation}
+
 In short, it is the expected rates multiplied by the cost-benefit of each entry in the confusion matrix, weighted by the class priors. I invented a cost and benefits value associated with entry of the confusion matrix based on domain knowledge. My goal is to reward correct female class classification while penalizing false classifications. My choices for these values can be see in table \ref{tableCostBenefit}. 
 
 \setlength{\extrarowheight}{1.5pt}
