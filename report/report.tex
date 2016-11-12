@@ -41,13 +41,13 @@ If possible, engineer features that might provide greater discrimination.
 To evaluate the performance of the classifiers I consider two separate evaluation metrics, the $F_1$ score of the classifiers and the \textbf{expected value}, \ref{expectedValue}, result. The equation for the expected value is calculated as follows:
 \begin{equation}
 \begin{aligned}
-\mbox{Expected Value} = p(\mathbf{p}).[p(\mathbf{Y}|\mathbf{p}). b(\mathbf{Y},\mathbf{p}) + p(\mathbf{N}|\mathbf{p}). b(\mathbf{N},\mathbf{p})] \\
+\mbox{Expected Value} = p(\mathbf{p}).[p(\mathbf{Y}|\mathbf{p}). b(\mathbf{Y},\mathbf{p}) + p(\mathbf{N}|\mathbf{p}). c(\mathbf{N},\mathbf{p})] \\
 + p(\mathbf{n}).[p(\mathbf{N}|\mathbf{n}). b(\mathbf{N},\mathbf{n}) + 
-p(\mathbf{Y}|\mathbf{n}). b(\mathbf{Y},\mathbf{n})]
+p(\mathbf{Y}|\mathbf{n}). c(\mathbf{Y},\mathbf{n})]
 \end{aligned}
 \end{equation}
 
-In short, it is the expected rates multiplied by the cost-benefit of each entry in the confusion matrix, weighted by the class priors. I invented a cost and benefits value associated with entry of the confusion matrix based on domain knowledge. My goal is to reward correct female class classification while penalizing false classifications. My choices for these values can be see in table \ref{tableCostBenefit}. 
+The expected value equation, in short, is the expected rates multiplied by the cost-benefit value of each entry in the confusion matrix, weighted by the class priors. I invented a cost and benefits value associated with each entry of the confusion matrix based on domain knowledge. My goal is to reward correct female class classification while penalizing false classifications. My choices for these values can be seen in table \ref{tableCostBenefit}. 
 
 \setlength{\extrarowheight}{1.5pt}
 \begin{table}[!htbp]
@@ -70,12 +70,12 @@ Cost of \textit{misclassifying} a \textbf{male} student  & 1  \\
 \label{tableCostBenefit}{}
 \end{table}
 
-I am using these two evaluation metrics in tandem because simple accuracy does not distinguish between \textbf{false positive} and \textbf{false negative} rates. Furthermore, the student dataset has unbalanced classes, as can be seen in figure \ref{targetClass}, which will also cause the accuracy metric to breakdown as the classes become more skewed.
+I am using these two evaluation metrics in tandem because simple accuracy does not distinguish between \textbf{false positive} and \textbf{false negative} rates. Further, the student dataset that I used for this project has unbalanced classes as can be seen in figure \ref{targetClass}. It is important to pay attention to this class unbalance as it can cause the accuracy metric to breakdown as the classes become more skewed.
 
 \begin{figure}[!hbtp]
 \centering
 
-    \caption{\textbf{Target Class. }\textit{The histogram shows a slightly unbalanced target dataset with 494 values of \{0: male\} and 388 values of \{1: female\}.}}
+    \caption{\textbf{Target Class. }\textit{The histogram shows a slightly unbalanced target dataset with 494 values of \{male\} and 388 values of \{female\}.}}
 
     \includegraphics[width=1\textwidth]{figures/targetClass}
     \label{targetClass}
@@ -454,7 +454,7 @@ Rank & Coded item & Description\\[0.5ex]
     \caption{\textbf{Final Features. }\textit{These features predict Intro CS Experience Based on Gender.}}
 
     \includegraphics[width=1\textwidth]{figures/final_importance.png}
-    \label{targetClass}
+    \label{finalImportance}
 \end{figure}
 
 
