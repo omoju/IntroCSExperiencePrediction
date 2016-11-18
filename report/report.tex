@@ -28,49 +28,17 @@ With this project, the problem I am interested in investigating is the gendered 
 To solve this problem, I will undertake the following course of action:
 \begin{enumerate}% 
 \item Explore the dataset.\\
-Usually, I would explore the dataset to ensure its integrity and understand the context. But in this case, I will skip this step since I designed the study and collected the data, as such, I am well versed of the context. Further, I have done previous work on this dataset, so I know its boundaries.
+Explore the dataset to ensure its integrity and understand the context.
 \item Identify features that may be used.\\ 
 If possible, engineer features that might provide greater discrimination.
 \item With the understanding that this a ``classification'' task, explore a couple of classifiers that might be well suited for the problem at hand.
-\item Select appropriate classifier based on evaluation metric and tune it for optimality.
-\item Extract top features responsible for discriminating the data.
+\item Select an appropriate classifier based on the evaluation metric and tune it for optimality.
+\item Extract the top features responsible for discriminating the data.
 \end{enumerate}
 
 \section*{Metrics}
 
-To evaluate the performance of the classifiers I consider two separate evaluation metrics, the $F_1$ score of the classifiers and the \textbf{expected value}, \ref{expectedValue}, result. The equation for the expected value is calculated as follows:
-\begin{equation}
-\begin{aligned}
-\mbox{Expected Value} = p(\mathbf{p}).[p(\mathbf{Y}|\mathbf{p}). b(\mathbf{Y},\mathbf{p}) + p(\mathbf{N}|\mathbf{p}). c(\mathbf{N},\mathbf{p})] \\
-+ p(\mathbf{n}).[p(\mathbf{N}|\mathbf{n}). b(\mathbf{N},\mathbf{n}) + 
-p(\mathbf{Y}|\mathbf{n}). c(\mathbf{Y},\mathbf{n})]
-\end{aligned}
-\end{equation}
-
-The expected value equation, in short, is the expected rates multiplied by the cost-benefit value of each entry in the confusion matrix, weighted by the class priors. I invented a cost and benefits value associated with each entry of the confusion matrix based on domain knowledge. My goal is to reward correct female class classification while penalizing false classifications. My choices for these values can be seen in table \ref{tableCostBenefit}. 
-
-\setlength{\extrarowheight}{1.5pt}
-\begin{table}[!htbp]
-\caption{Cost/Benefits} %title of the table
-\centering % centering table
-\begin{tabular}{|l|r|} % creating four columns 
-\hline % inserts single-line
-
-\hline
-Item & Value\\[0.5ex]
-\hline % inserts single-line
-
-Benefit of \textit{correctly identifying} a \textbf{female} student  & 5  \\
-Benefit of \textit{correctly identifying} a \textbf{male} student   & 1  \\
-Cost of \textit{misclassifying} a \textbf{female} student  & -2  \\
-Cost of \textit{misclassifying} a \textbf{male} student  & 1  \\
-
-\hline% inserts single-line
-\end{tabular}
-\label{tableCostBenefit}{}
-\end{table}
-
-I am using these two evaluation metrics in tandem because simple accuracy does not distinguish between \textbf{false positive} and \textbf{false negative} rates. Further, the student dataset that I used for this project has unbalanced classes as can be seen in figure \ref{targetClass}. It is important to pay attention to this class unbalance as it can cause the accuracy metric to breakdown as the classes become more skewed.
+The student dataset that I will be using for this project has unbalanced classes as can be seen in figure \ref{targetClass}. It is important to pay attention to this class unbalance as it can cause the accuracy metric that is routinely used to judge classifiers to breakdown as the classes become more skewed. 
 
 \begin{figure}[!hbtp]
 \centering
@@ -80,6 +48,19 @@ I am using these two evaluation metrics in tandem because simple accuracy does n
     \includegraphics[width=1\textwidth]{figures/targetClass}
     \label{targetClass}
 \end{figure}
+
+Taking into account the unbalanced dataset, and the nature of the problem itself, instead of using accuracy as my evaluation criteria, I will use the \textbf{expected value} framework, \ref{expectedValue}. This framework allows me to evaluate each classifier with respect to the "potential" business value of the decisions it makes on the data.  In real life scenarios, there is often a cost associated with misclassifying data. To really drive this idea home, permit me to take a detour into the world of credit assessment.
+
+Machine learning applications are often used to determine whether a candidate should be given a loan or not. In this scenario, there is a real cost to a business if a good candidate is misclassified to be a risky candidate. When that happens, the business loses money it otherwise would have made from issuing the loan. So, in evaluating the effectiveness of a  classifier in separating such a dataset, we want to have a cost associated with a misclassification and a reward/benefit associated with a correct classification. A way to do that is to use the expected value framework whose equation is shown below:
+\begin{equation}
+\begin{aligned}
+\mbox{Expected Value} = p(\mathbf{p}).[p(\mathbf{Y}|\mathbf{p}). b(\mathbf{Y},\mathbf{p}) + p(\mathbf{N}|\mathbf{p}). c(\mathbf{N},\mathbf{p})] \\
++ p(\mathbf{n}).[p(\mathbf{N}|\mathbf{n}). b(\mathbf{N},\mathbf{n}) + 
+p(\mathbf{Y}|\mathbf{n}). c(\mathbf{Y},\mathbf{n})]
+\end{aligned}
+\end{equation}
+
+This equation states that the expected value of a classifier is the expected rates multiplied by the cost/benefit value of each entry in the confusion matrix, weighted by the class priors. For this project, I have assigned a penalty of $c(\mathbf{N},\mathbf{p}) = -2$ for each false classification of the female class and a reward of $b(\mathbf{N},\mathbf{n}) = 5$ for each correct assignment. I came up with this numbers arbitrarily based on my desire to pick the classifier that best separated out the female class. 
 
 \begin{figure}[!hbtp]
 \centering
@@ -98,7 +79,7 @@ I am using these two evaluation metrics in tandem because simple accuracy does n
 \chapter*{Analysis}
 
 \section* {Dataset}
-The dataset used in this project consists of survey responses. A copy of the survey instrument can be found in the appendix of this report. The survey instruments were developed to measure participants' self-reported attitudes along several dimensions: 
+The dataset I used in this project consists of survey responses. I developed the survey instruments to measure undergraduate students' self-reported attitudes along the following dimensions:
 
 \begin{enumerate}% 
 \item \texttt{atcs}: CS beliefs
@@ -109,26 +90,14 @@ The dataset used in this project consists of survey responses. A copy of the sur
 \item \texttt{cltrcmp}: Collegiality
 \end{enumerate}
 
-In addition, the survey also collected data around student background: 
+In addition, I also collected data around students' background using the following dimensions.
 
 \begin{enumerate}% 
 \item \texttt{prcs}: Prior collegiate CS exposure
 \item \texttt{mtr}: CS mentors and role models
 \item University demographics
 \end{enumerate}
-
-
-
-Majority of the questionnaire uses a 5-point Likert scale (where 1 = Strongly Disagree, 3 = Neutral and 5 = Strongly Agree). A code book was created to facilitate ease of analysis and interpretability of results. 
-
-The dataset consists of 45 feature columns with 882 instances. Further, the dataset breakdowns into 494 male datapoints versus 388 female datapoints in the dataset. 
-
-
-%----------------------------------------------------------------------------------------
-%  CHAPTER 
-%----------------------------------------------------------------------------------------
-
-
+Majority of the questionnaire I developed uses a 5-point Likert scale (where 1 = Strongly Disagree, 3 = Neutral and, 5 = Strongly Agree). I created a code book to facilitate my ease of analysis and the interpretability of results. The dataset consists of 45 features with 882 instances. Further, the dataset breakdowns into 494 male instances versus 388 female instances.
 
 \section*{Missing Values}
 The dataset with 45 features had two features with missing data.
@@ -151,14 +120,13 @@ The features were scaled using a minimax scaler to get better output for our SVM
 \end{itemize} 
 
 
-
 \section*{Summarizing the data}
 \begin{figure}[!hbtp]
 \centering
     \caption{\textbf{Density estimation for dimension atcs. }\textit{Self-reported attitudes about CS.}}\label{atcs}
     \includegraphics[width=0.8\textwidth]{figures/atcs}
 \end{figure}
-I created a density estimation for some dimensions in the data to gain an understanding of the variables and determine if I need to reject some of them, or collapse others. The distributions of most of the dimensions looked very similarly to that of \ref{atcs}. Most of the data is either skewed to the left or skewed to the right. As a result, I rejected using descriptive statistics to summarize the data in favor quantiles represented by box plots as can be seen in figure \ref{atcs_dimension}. 
+I created a density estimation for some dimensions in the data to gain an rough understanding of student experiences. The distributions of most of the dimensions looked very similarly to that of \ref{atcs}. Most of the data is either skewed to the left or skewed to the right. As a result, I rejected using descriptive statistics to summarize the data in favor quantiles represented by box plots as can be seen in figure \ref{atcs_dimension}. 
 \begin{figure}[!hbtp]
 \centering
     \caption{\textbf{Quantiles for dimension \texttt{atcs. }}\textit{Self-reported attitudes about CS.}}\label{atcs_dimension}
@@ -191,9 +159,11 @@ From \ref{atcsgender}, I can see that the distribution for the dimension \texttt
     \caption{\textbf{Dimensions of \texttt{atcsgender}.} \textit{Figure (a) Density estimation for the dimension. Figure (b) Boxplot for the same dimension.}}
 \end{figure}
 
+%----------------------------------------------------------------------------------------
+%  CHAPTER 
+%----------------------------------------------------------------------------------------
 
-
-\section*{Algorithms and Techniques}
+\chapter*{Algorithms and Techniques}
 
 For the problem of determining the factors that predict intro CS experience based on gender, I experimented with four different classifiers, a decision tree classifier, two ensemble methods and a support vector machine:
 
